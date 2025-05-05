@@ -1,0 +1,8 @@
+{% block body %}
+<h1>tela de login</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Entrar</button>
+</form>
+{% endblock %}
