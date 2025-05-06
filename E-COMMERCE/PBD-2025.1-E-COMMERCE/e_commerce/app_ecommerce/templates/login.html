@@ -2,7 +2,15 @@
 <h1>tela de login</h1>
 <form action="" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    <div>
+        <label for="{{ form.username.id_for_label }}">Usuário:</label>
+        {{ form.username }}
+    </div>
+    <div>
+        <label for="{{ form.password.id_for_label }}">Password:</label>
+        {{ form.password}}
+    </div>
+    </div>
     <button>Entrar</button>
 </form>
 {% endblock %}
