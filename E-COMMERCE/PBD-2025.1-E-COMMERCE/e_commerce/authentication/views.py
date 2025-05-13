@@ -1,12 +1,27 @@
+from pyexpat.errors import messages
+from django.contrib import messages
 from django.shortcuts import render
-from .forms import UserLoginForm, UserRegistration 
+from .forms import UserLoginForm, UserRegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from .models import User
 
 
 def user_page(request):
-    form = UserRegistration()
-    return render(request, 'user.html', {'form': form})
+    form = UserRegistrationForm()
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "User registered successfully!")
+            return redirect('ecommerce:home')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = UserRegistrationForm()
+    contex = {'form': form}
+    return render(request, 'user.html', contex)
+
 
 def login_page(request):
     form = UserLoginForm()
@@ -19,6 +34,7 @@ def login_page(request):
                 return redirect('ecommerce:home')
     context = {'form': form}
     return render(request, 'login.html', context)
+
 
 def handle_logout(request):
     logout(request)

@@ -12,10 +12,29 @@ class UserLoginForm(forms.ModelForm):
                   'password']
 
 
-class UserRegistration(forms.ModelForm):
-    username = forms.CharField(label='Email')
+class UserRegistrationForm(forms.ModelForm):
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Digite seu e-mail'
+    }))
+    first_name = forms.CharField(label='Nome', widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Digite seu nome'
+    }))
+    last_name = forms.CharField(label='Sobrenome', widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Digite seu sobrenome'
+    }))
+    phone = forms.CharField(label='Telefone', widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': '(XX) XXXXX-XXXX'
+    }))
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Digite sua senha'
+    }))
 
-    class Meta():
+    class Meta:
         model = User
         fields = ['username',
                   'first_name',
