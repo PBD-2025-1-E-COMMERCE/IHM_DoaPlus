@@ -1,1 +1,64 @@
-Itens em construcao...
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lista de Itens</title>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Itens Cadastrados</h2>
+        {% if itens %}
+        <table class="table table-bordered table-hover bg-white">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Código</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Estoque</th>
+                    <th>Preço</th>
+                    <th>Imagem</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itens %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.code_item }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.stock_quantity }}</td>
+                    <td>R$ {{ item.price|floatformat:2 }}</td>
+                    <td>
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="Imagem" width="60" height="60" class="rounded">
+                        {% else %}
+                        <span class="text-muted">Sem imagem</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="#"
+                            class="btn btn-sm btn-warning">Editar</a>
+                        <a href="#"
+                            class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info text-center">Nenhum item cadastrado.</div>
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-primary">Cadastrar Novo Item</a>
+        </div>
+    </div>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

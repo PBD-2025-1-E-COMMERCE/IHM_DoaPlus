@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
     <!-- Sidebar -->
     <nav class="sidebar d-flex flex-column position-fixed">
         <div class="py-4 px-3 mb-4 border-bottom text-center">
@@ -41,8 +42,20 @@
     </nav>
 
     <!-- Header com ícone de perfil -->
-    <header class="header d-flex justify-content-end align-items-center px-4"
+    <header class="header d-flex justify-content-between align-items-center px-4"
         style="left: 0; width: 100%; height: 56px; position: fixed; top: 0; background-color: #fff; z-index: 999;">
+        <!-- Logo alinhada à esquerda -->
+        <div class="d-flex align-items-center">
+            <a href="{% url 'ecommerce:index' %}" class="d-flex align-items-center gap-2 text-decoration-none">
+                <img src="{% static 'assets/img/logo.png' %}" alt="Logo" width="48" height="48"
+                    style="border-radius: 12px;">
+                <h1 class="m-0"
+                    style="font-family: 'Raleway', 'Poppins', sans-serif; font-weight: 700; color: #37517e; font-size: 1.8rem;">
+                    GP<span style="color: #ffc451;">.</span>
+                </h1>
+            </a>
+        </div>
+        <!-- Perfil alinhado à direita -->
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser"
                 data-bs-toggle="dropdown" aria-expanded="false">

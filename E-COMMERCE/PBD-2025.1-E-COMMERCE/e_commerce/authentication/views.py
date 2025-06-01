@@ -5,6 +5,7 @@ from .forms import UserLoginForm, UserRegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .models import User
+from django.contrib.auth.decorators import login_required
 
 
 def user_page(request):
@@ -40,7 +41,7 @@ def handle_logout(request):
     logout(request)
     return redirect('authentication:login')
 
-
+@login_required
 def list_users(request):
     users = User.objects.all()
     contex = {'users': users}

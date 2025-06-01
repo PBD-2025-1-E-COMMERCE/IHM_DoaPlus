@@ -71,7 +71,7 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <a href="{% url 'ecommerce:sales_dashboard' %}">
+                <a href="{% url 'ecommerce:item_dashboard' %}">
                   <h4>App 1</h4>
                   <p>Lorem ipsum, dolor sit</p>
                   <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" title="App 1"
@@ -114,6 +114,24 @@
                 </a>
               </div>
             </div><!-- End Portfolio Item -->
+
+            <!-- teste de item -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              {% for item in itens %}
+              <td>
+                {% if item.image %}
+                <img src="{{ item.image.url }}" alt="" width="60" height="60" class="img-fluid">
+                <div class="portfolio-info">
+                <h4>{{item.name}}</h4>
+                <p>{{item.price}}</p>
+                {% else %}
+                <span class="text-muted">Sem imagem</span>
+                {% endif %}
+              </td>
+              {% endfor %}
+              </div>
+            </div>
+
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-4.jpg' %}" class="img-fluid" alt="">
