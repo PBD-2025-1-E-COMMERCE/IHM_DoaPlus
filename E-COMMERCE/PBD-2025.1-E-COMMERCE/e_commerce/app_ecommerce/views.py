@@ -9,8 +9,9 @@ def index(request):
     return render(request, 'index.html')
 
 
-def sales_dashboard(request):
-    return render(request, 'sales_dashboard.html')
+def item_dashboard(request):
+    return render(request, 'item_dashboard.html')
+
 
 @login_required
 def dash(request):
@@ -26,20 +27,20 @@ def create_item(request):
             return redirect('ecommerce:sales_dashboard')
     else:
         form = RegisterItem()
-    contex = {'form': form}
-    return render(request, 'create_item.html', contex)
+    context = {'form': form}
+    return render(request, 'create_item.html', context)
 
 
 def list_companies(request):
-    companies = Company.objects.all().order_by('name')
-    contex = {'companies': companies}
-    return render(request, 'list_companies.html', contex)
+    companies = Company.objects.all()
+    context = {'companies': companies}
+    return render(request, 'list_companies.html', context)
 
 
 def list_itens(request):
     itens = Itens.objects.all().order_by('name')
-    contex = {'itens': itens}
-    return render(request, 'list_itens.html', contex)
+    context = {'itens': itens}
+    return render(request, 'list_itens.html', context)
 
 
 def create_company(request):
@@ -51,5 +52,5 @@ def create_company(request):
             return redirect('authentication:login')
     else:
         form = RegisterCompany()
-    contex = {'form': form}
-    return render(request, 'create_company.html', contex)
+    context = {'form': form}
+    return render(request, 'create_company.html', context)

@@ -20,7 +20,7 @@ def user_page(request):
     else:
         form = UserRegistrationForm()
     contex = {'form': form}
-    return render(request, 'user.html', contex)
+    return render(request, 'create_user.html', contex)
 
 
 def login_page(request):
@@ -42,6 +42,6 @@ def handle_logout(request):
 
 
 def list_users(request):
-    users = User.objects.all().order_by('name')
+    users = User.objects.all()
     contex = {'users': users}
-    return (request, 'list_users.html', contex)
+    return render (request, 'list_users.html', contex)

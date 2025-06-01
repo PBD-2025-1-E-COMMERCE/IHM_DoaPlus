@@ -20,19 +20,19 @@
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'ecommerce:list_companies' %}" data-url="{% url 'ecommerce:empresas' %}">
+                <a class="nav-link" href="/dash/list_companies/" data-url="/dash/list_companies/">
                     <i class="bi bi-building"></i>
                     <span>Empresa</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'ecommerce:list_itens' %}" data-url="{% url 'ecommerce:itens' %}">
+                <a class="nav-link" href="/dash/list_itens/" data-url="/dash/list_itens/">
                     <i class="bi bi-box-seam"></i>
                     <span>Itens</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'ecommerce:list_users' %}" data-url="{% url 'ecommerce:usuarios' %}">
+                <a class="nav-link" href="/dash/list_users/" data-url="/dash/list_users/">
                     <i class="bi bi-list"></i>
                     <span>Usuário</span>
                 </a>
@@ -77,13 +77,13 @@
     <!-- Scripts -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script>
+        // Navegação dinâmica sem reload
         document.querySelectorAll('.nav-link[data-url]').forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 const url = this.getAttribute('data-url');
 
-                // Atualiza a URL no navegador sem recarregar a página
-                window.history.pushState({}, '', url);
+                window.history.pushState({ url: url }, '', url);
 
                 fetch(url)
                     .then(response => {
@@ -104,13 +104,25 @@
             });
         });
 
-        // Suporte ao botão de voltar/avançar do navegador
-        window.addEventListener('popstate', () => {
+        // Suporte ao botão voltar/avançar
+        window.addEventListener('popstate', (event) => {
             const url = window.location.pathname;
+
             fetch(url)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao carregar conteúdo.');
+                    }
+                    return response.text();
+                })
                 .then(html => {
                     document.getElementById('conteudo-central').innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById('conteudo-central').innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            ${error.message}
+                        </div>`;
                 });
         });
     </script>

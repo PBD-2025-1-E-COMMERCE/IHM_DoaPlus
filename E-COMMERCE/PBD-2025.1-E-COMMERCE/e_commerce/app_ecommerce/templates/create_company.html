@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Usuário - GP</title>
+    <title>Cadastrar Empresa</title>
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
@@ -16,40 +16,21 @@
 <body>
     <main class="w-100 d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="register-card">
-            <form method="post" action="{% url 'authentication:user' %}">
+            <form method="post" action="{% url 'ecommerce:create_company' %}">
                 {% csrf_token %}
-                <div class="register-logo">
-                    <img src="{% static 'assets/img/logo.png' %}" alt="Logo" width="48" height="48"
-                        style="border-radius:8px;">
-                    <h1>GP</h1><span>.</span>
+                {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {% if field.name == "image" %}
+                    <input type="file" name="image" class="form-control" id="{{ field.id_for_label }}" accept="image/*">
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
                 </div>
-                <h2 class="h4 mb-3 fw-bold text-center" style="color:var(--heading-color);">Cadastrar Usuário</h2>
-                <div class="d-flex flex-column gap-2">
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="floatingFirstName" placeholder="Nome"
-                            name="first_name" required>
-                        <label for="floatingFirstName">Nome</label>
-                    </div>
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="floatingLastName" placeholder="Sobrenome"
-                            name="last_name">
-                        <label for="floatingLastName">Sobrenome</label>
-                    </div>
-                    <div class="form-floating mb-2">
-                        <input type="email" class="form-control" id="floatingEmail" placeholder="E-mail" name="email"
-                            required>
-                        <label for="floatingEmail">E-mail</label>
-                    </div>
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="floatingPhone" placeholder="Telefone" name="phone">
-                        <label for="floatingPhone">Telefone</label>
-                    </div>
-                    <div class="form-floating mb-2">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"
-                            name="password" required>
-                        <label for="floatingPassword">Senha</label>
-                    </div>
-                </div>
+                {% endfor %}
                 <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Cadastrar</button>
                 <p class="mt-4 mb-2 text-center register-footer">&copy; 2017–2025 GP. Todos os direitos reservados.</p>
             </form>

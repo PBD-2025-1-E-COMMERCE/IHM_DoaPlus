@@ -14,10 +14,10 @@ class RegisterItem(forms.ModelForm):
     class Meta:
         model = Itens
         fields = ['code_item', 'name', 'category',
-                  'description', 'stock_quantity', 'price']
+                  'description', 'stock_quantity', 'price', 'image']
 
 
 class RegisterCompany(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ['name', 'cnpj', 'logo', 'password']
+        fields = ['name', 'cnpj', 'logo', 'password', 'item', 'user']
