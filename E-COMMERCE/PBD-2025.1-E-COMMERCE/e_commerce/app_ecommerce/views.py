@@ -12,7 +12,9 @@ def index(request):
 
 
 def item_dashboard(request):
-    return render(request, 'item_dashboard.html')
+    itens = Itens.objects.all().order_by('name')
+    context = {'itens': itens}
+    return render(request, 'item_dashboard.html', context)
 
 
 @login_required

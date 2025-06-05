@@ -45,9 +45,8 @@
           </ol>
         </div>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
 
-    <!-- Portfolio Details Section -->
     <section id="portfolio-details" class="portfolio-details section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -72,25 +71,12 @@
                   }
                 }
               </script>
-
+              {% for item in itens %}
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="{% static 'assets/img/portfolio/app-1.jpg' %}" alt="">
+                  <img src="{{ item.image.url }}" alt="">
                 </div>
-
-                <div class="swiper-slide">
-                  <img src="{% static 'assets/img/portfolio/product-1.jpg' %}" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="{% static 'assets/img/portfolio/branding-1.jpg' %}" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="{% static 'assets/img/portfolio/books-1.jpg' %}" alt="">
-                </div>
-
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -98,29 +84,20 @@
 
           <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Nome do item</h3>
+              <h3>{{item.name}}</h3>
               <ul>
-                <li><strong>Preco</strong>: R$100,00</li>
-                <li><strong>Cor</strong>: Preto</li>
-                <li><strong>Em estoque</strong>: 01</li>
+                <li><strong>Preco</strong>: R${{item.price}}</li>
+                <li><strong>Em estoque</strong>: {{item.stock_quantity}}</li>
                 <li><strong>Em construcao</strong>: ...</li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
               <h2>Descricao</h2>
               <p>
-                Mergulhe no som com o ThunderBeats X9, o fone sem fio que transforma qualquer playlist em uma
-                experiência de outro nível. Com drivers de 40mm e tecnologia Noise Canceling ativa, ele isola até o
-                pensamento negativo da ex que te deixou ouvindo Marília Mendonça.
-
-                Possui conexão Bluetooth 5.3 ultraestável, microfone embutido com cancelamento de ruído pra chamadas
-                nítidas, e bateria que dura até 42 horas seguidas (ou o tempo exato pra maratonar 3 temporadas da sua
-                série favorita sem parar).
-
-                Design ergonômico, dobrável e leve como o beat do seu artista favorito. Ideal pra treinar, trampar,
-                viajar ou só ignorar a galera do busão.
+                {{item.description}}
               </p>
             </div>
+            {% endfor %}
           </div>
 
         </div>

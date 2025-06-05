@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'ecommerce'
@@ -12,4 +12,5 @@ urlpatterns = [
     path('create_company/', views.create_company, name='create_company'),
     path('list_companies/', views.list_companies, name='list_companies'),
     path('list_itens/', views.list_itens, name='list_itens'),
+    
 ]

@@ -10,7 +10,6 @@ urlpatterns = [
     path('', include("authentication.urls")),
     path('dash/', include('app_ecommerce.urls', namespace='ecommerce')),
     path('dash/', include('authentication.urls', namespace='authentication')),
-
 ]
 
 if settings.DEBUG:
