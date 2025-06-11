@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 from .models import _Group, Group, User
-from app_ecommerce.models import Itens, Company
+from app_ecommerce.models import Item, Company
 from django.core.exceptions import ValidationError
 
 
@@ -39,12 +39,12 @@ class UserAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=...):
         fieldsets = [
             ("User Info", {"fields": [
-             "email", "first_name", "last_name", "phone"]}),
+             "email", "first_name", "last_name", "phone", "company"]}),
         ]
         if obj:
             fieldsets += [
                 ("Simple permissions", {"fields": [
-                 "is_staff", "is_active", "is_superuser"]}),
+                 "is_staff", "is_active", "is_superuser", "is_admin"]}),
                 ("Advanced permissions", {
                  "fields": ["user_permissions", "groups"]}),
             ]
@@ -57,5 +57,5 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.unregister(_Group)
 admin.site.register(Group)
-admin.site.register(Itens)
+admin.site.register(Item)
 admin.site.register(Company)

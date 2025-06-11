@@ -13,7 +13,7 @@ class Company(models.Model):
     id_company = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=100)
     cnpj = models.CharField(max_length=14, unique=True)
-    category = models.CharField(max_length=100)
+    categorys = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logos/', null=True, blank=True)
 
     def __str__(self):

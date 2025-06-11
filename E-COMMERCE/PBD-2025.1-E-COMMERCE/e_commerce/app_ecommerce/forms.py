@@ -1,5 +1,5 @@
 from django import forms
-from app_ecommerce.models import Itens, Company
+from app_ecommerce.models import Item, Company
 
 
 class CompanyLogin(forms.ModelForm):
@@ -12,12 +12,12 @@ class CompanyLogin(forms.ModelForm):
 
 class RegisterItem(forms.ModelForm):
     class Meta:
-        model = Itens
+        model = Item
         fields = ['code_item', 'name', 'category',
-                  'description', 'stock_quantity', 'price', 'image']
+                  'level', 'company_id', 'image']
 
 
 class RegisterCompany(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ['name', 'cnpj', 'logo', 'password', 'item', 'user']
+        fields = ['name', 'cnpj', 'logo', 'categorys']

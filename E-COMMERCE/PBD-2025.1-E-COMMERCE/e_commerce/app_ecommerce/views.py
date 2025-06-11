@@ -2,17 +2,17 @@ from pyexpat.errors import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterItem, RegisterCompany
-from .models import Company, Itens
+from .models import Company, Item
 
 
 def index(request):
-    itens = Itens.objects.all().order_by('name')
+    itens = Item.objects.all().order_by('name')
     context = {'itens': itens}
     return render(request, 'index.html', context)
 
 
 def item_dashboard(request):
-    itens = Itens.objects.all().order_by('name')
+    itens = Item.objects.all().order_by('name')
     context = {'itens': itens}
     return render(request, 'item_dashboard.html', context)
 
@@ -45,7 +45,7 @@ def list_companies(request):
 
 @login_required
 def list_itens(request):
-    itens = Itens.objects.all().order_by('name')
+    itens = Item.objects.all().order_by('name')
     context = {'itens': itens}
     return render(request, 'list_itens.html', context)
 

@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group as _Group, Permission
 
 
+
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, phone, password=None):
+    def create_user(self, email, first_name, last_name, company, phone, password=None):
         if not email:
             raise ValueError("Users must have an email address")
 
@@ -12,6 +13,8 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             phone=phone,
+            company=company
+
         )
 
         user.set_password(password)
@@ -19,18 +22,23 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **fields):
+
         user = self.create_user(
             email,
             **fields,
             password=password
+
         )
+
         user.is_superuser = True
         user.is_admin = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
 
@@ -39,10 +47,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(max_length=255, blank=True)
 
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    
+    company = models.ForeignKey(
+        'app_ecommerce.Company', on_delete=models.CASCADE, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', 'company']
 
     objects = UserManager()
 
