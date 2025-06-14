@@ -34,9 +34,12 @@ def login_page(request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             user = authenticate(request, **form.cleaned_data)
-            if user:
+            if User.is_admin==True and user:
                 login(request, user=user)
                 return redirect('ecommerce:dash')
+            elif user:
+                login(request, user=user)
+                return redirect('ecommerce:index')
     context = {'form': form}
     return render(request, 'login.html', context)
 
