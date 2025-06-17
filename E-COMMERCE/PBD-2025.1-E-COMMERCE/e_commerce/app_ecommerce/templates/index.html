@@ -33,301 +33,474 @@
 
 <body class="index-page">
 
-  {% block body %}
-  {% endblock %}
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">GP</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home<br></a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+
+    </div>
+  </header>
   <main class="main">
 
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
 
-
-    <section id="portfolio" class="portfolio section">
-
-      <!-- Section Title -->
-      <div class="container section-title d-flex flex-column align-items-center justify-content-center"
-        data-aos="fade-up">
-        <a href="{% url 'ecommerce:index' %}" class="d-flex align-items-center gap-2 mb-2 text-decoration-none">
-          <img src="{% static 'assets/img/logo.png' %}" alt="Logo" width="64" height="64" style="border-radius: 12px;">
-          <h1 class="m-0"
-            style="font-family: 'Raleway', 'Poppins', sans-serif; font-weight: 700; color: #37517e; font-size: 2.2rem;">
-            GP<span style="color: #ffc451;">.</span>
-          </h1>
-        </a>
-      </div><!-- End Section Title -->
+      <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="" data-aos="fade-in">
 
       <div class="container">
 
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-6 col-lg-8">
+            <h2>Powerful Digital Solutions With GP<span>.</span></h2>
+            <p>We are team of talented digital marketers</p>
+          </div>
+        </div>
 
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Mais vendidos</li>
-            <li data-filter=".filter-product">Promocao</li>
-            <li data-filter=".filter-branding">Diversos</li>
-          </ul><!-- End Portfolio Filters -->
+        <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <i class="bi bi-binoculars"></i>
+              <h3><a href="">Lorem Ipsum</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-box">
+              <i class="bi bi-bullseye"></i>
+              <h3><a href="">Dolor Sitema</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-box">
+              <i class="bi bi-fullscreen-exit"></i>
+              <h3><a href="">Sedare Perspiciatis</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="icon-box">
+              <i class="bi bi-card-list"></i>
+              <h3><a href="">Magni Dolores</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
+            <div class="icon-box">
+              <i class="bi bi-gem"></i>
+              <h3><a href="">Nemos Enimade</a></h3>
+            </div>
+          </div>
+        </div>
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+      </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <a href="{% url 'ecommerce:item_dashboard' %}">
-                  <h4>App 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" title="App 1"
-                    data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </a>
-              </div>
-            </div><!-- End Portfolio Item -->
+    </section>
+    <!-- Clientes Section -->
+    <section id="clients" class="clients section">
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-2.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-2.jpg' %}" title="Product 1"
-                  data-gallery="portfolio-gallery-product" class="glightbox preview-link">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details" class="details-link">
-                  <i class="bi bi-link-45deg"></i>
-                </a>
-              </div>
-            </div><!-- End Portfolio Item -->
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-3.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-3.jpg' %}" title="Branding 1"
-                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-                <a href="portfolio-details.html" title="More Details" class="details-link">
-                  <i class="bi bi-link-45deg"></i>
-                </a>
-              </div>
-            </div><!-- End Portfolio Item -->
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+            
+          </script>
 
-            <!-- teste de item -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              {% for item in itens %}
-              <td>
-                {% if item.image %}
-                <img src="{{ item.image.url }}" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <a href="{% url 'ecommerce:item_dashboard' %}" title="Product teste 1" >
-                    <i class="bi bi-zoom-in"></i>
-                    <h4>{{item.name}}</h4>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-1.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-2.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-6.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-7.png' %}" class="img-fluid"
+                alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-8.png' %}" class="img-fluid"
+                alt=""></div>
+            {% for company in companies %}
+            <div class="swiper-slide">
+              {% if company.logo %}
+              <a href="{% url 'ecommerce:detalhe_empresa' company.id %}">
+                <img src="{{ company.logo.url }}" alt="Logo" width="60" height="60" class="rounded">
+              </a>
+              {% else %}
+              <span class="text-muted">Sem logo</span>
+              {% endif %}
+            </div>
+            {% endfor %}
 
-                    {% else %}
-                  </a>
+
+
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <body class="index-page">
+
+      <main class="main">
+        {% block body %}
+        <section id="portfolio" class="portfolio section">
+          <div class="container">
+
+            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+              <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                <li data-filter="*" class="filter-active">Todos</li>
+                <li data-filter=".filter-app">Mais vendidos</li>
+                <li data-filter=".filter-product">Promocao</li>
+                <li data-filter=".filter-branding">Diversos</li>
+              </ul>
+
+              <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <a href="{% url 'ecommerce:item_dashboard' %}">
+                      <h4>App 1</h4>
+                      <p>Lorem ipsum, dolor sit</p>
+                      <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg' %}" title="App 1"
+                        data-gallery="portfolio-gallery-app" class="glightbox preview-link">
+                        <i class="bi bi-zoom-in"></i>
+                      </a>
+                      <a href="portfolio-details.html" title="More Details" class="details-link">
+                        <i class="bi bi-link-45deg"></i>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-2.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Product 1</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-2.jpg' %}" title="Product 1"
+                      data-gallery="portfolio-gallery-product" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-3.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Branding 1</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-3.jpg' %}" title="Branding 1"
+                      data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                {% for item in itens %}
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+
+                  {% if item.image %}
+                  <img src="{{ item.image.url }}" class="img-fluid" alt="">
+                  {% else %}
                   <span class="text-muted">Sem imagem</span>
                   {% endif %}
-              </td>
-              {% endfor %}
+
+                  <div class="portfolio-info">
+                    <h4>{{ item.name }}</h4>
+                    <a href="{% url 'ecommerce:item_dashboard' %}" title="Ver detalhes">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                  </div>
+
+                </div>
+                {% endfor %}
+
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-4.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>App 2</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-4.jpg' %}" title="App 2"
+                      data-gallery="portfolio-gallery-app" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-5.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Product 2</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-5.jpg' %}" title="Product 2"
+                      data-gallery="portfolio-gallery-product" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-6.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Branding 2</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-6.jpg' %}" title="Branding 2"
+                      data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-7.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>App 3</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 3"
+                      data-gallery="portfolio-gallery-app" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-8.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Product 3</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-8.jpg' %}" title="Product 3"
+                      data-gallery="portfolio-gallery-product" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                  <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-9.jpg' %}" class="img-fluid"
+                    alt="">
+                  <div class="portfolio-info">
+                    <h4>Branding 3</h4>
+                    <p>Lorem ipsum, dolor sit</p>
+                    <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-9.jpg' %}" title="Branding 3"
+                      data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    <a href="portfolio-details.html" title="More Details" class="details-link">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+              </div><!-- End Portfolio Container -->
+
             </div>
+
           </div>
 
+        </section><!-- /Portfolio Section -->
 
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-4.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-4.jpg' %}" title="App 2"
-                data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
+        <!-- ... (restante do código permanece igual) ... -->
+        {% endblock %}
+      </main>
+
+      <footer id="footer" class="footer dark-background">
+
+        <div class="footer-top">
+          <div class="container">
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6 footer-about">
+                <a href="{% url 'ecommerce:index' %}" class="logo d-flex align-items-center">
+                  <span class="sitename">GP</span>
+                </a>
+                <div class="footer-contact pt-3">
+                  <p>A108 Adam Street</p>
+                  <p>New York, NY 535022</p>
+                  <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+                  <p><strong>Email:</strong> <span>info@example.com</span></p>
+                </div>
+                <div class="social-links d-flex mt-4">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}"> Home</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}#about"> About us</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}#services"> Services</a>
+                  </li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Terms of service</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Privacy policy</a></li>
+                </ul>
+              </div>
+
+              <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Our Services</h4>
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Design</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Development</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Product Management</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Marketing</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#"> Graphic Design</a></li>
+                </ul>
+              </div>
             </div>
-          </div><!-- End Portfolio Item -->
-
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-5.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Product 2</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-5.jpg' %}" title="Product 2"
-                data-gallery="portfolio-gallery-product" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
-            </div>
-          </div><!-- End Portfolio Item -->
-
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-6.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Branding 2</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-6.jpg' %}" title="Branding 2"
-                data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
-            </div>
-          </div><!-- End Portfolio Item -->
-
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-7.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 3"
-                data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
-            </div>
-          </div><!-- End Portfolio Item -->
-
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-8.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Product 3</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-8.jpg' %}" title="Product 3"
-                data-gallery="portfolio-gallery-product" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
-            </div>
-          </div><!-- End Portfolio Item -->
-
-          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-            <img src="{% static 'assets/img/masonry-portfolio/masonry-portfolio-9.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Branding 3</h4>
-              <p>Lorem ipsum, dolor sit</p>
-              <a href="{% static 'assets/img/masonry-portfolio/masonry-portfolio-9.jpg' %}" title="Branding 3"
-                data-gallery="portfolio-gallery-branding" class="glightbox preview-link">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-              <a href="portfolio-details.html" title="More Details" class="details-link">
-                <i class="bi bi-link-45deg"></i>
-              </a>
-            </div>
-          </div><!-- End Portfolio Item -->
-
-        </div><!-- End Portfolio Container -->
-
-      </div>
-
-      </div>
-
-    </section><!-- /Portfolio Section -->
-
-    <!-- ... (restante do código permanece igual) ... -->
-
-  </main>
-  <footer id="footer" class="footer dark-background">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
-            <a href="{% url 'ecommerce:index' %}" class="logo d-flex align-items-center">
-              <span class="sitename">GP</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
-            </div>
-            <div class="social-links d-flex mt-4">
-              <a href=""><i class="bi bi-twitter-x"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}"> Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}#about"> About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}#services"> Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Graphic Design</a></li>
-            </ul>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="copyright">
-      <div class="container text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">GP</strong> <span>Todos os direitos reservados</span>
-        </p>
-        <div class="credits">
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-            href="https://themewagon.com">ThemeWagon</a>
+        <div class="copyright">
+          <div class="container text-center">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">GP</strong> <span>Todos os direitos
+                reservados</span>
+            </p>
+            <div class="credits">
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
+                href="https://themewagon.com">ThemeWagon</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </div>
-    <!-- Botão de login no canto inferior direito do rodapé -->
-    <a href="{% url 'authentication:login' %}" class="btn btn-primary btn-lg" style="
+        </div>
+        <!-- Botão de login no canto inferior direito do rodapé -->
+        <a href="{% url 'authentication:login' %}" class="btn btn-primary btn-lg" style="
         position: absolute;
         right: 24px;
         bottom: 24px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         z-index: 10;
       ">
-      Efetuar Login
-    </a>
-    </div>
+          Efetuar Login
+        </a>
+        </div>
 
-  </footer>
+      </footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
-    style="bottom: 90px;"><i class="bi bi-arrow-up-short"></i></a>
+      <!-- Scroll Top -->
+      <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+        style="bottom: 90px;"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+      <!-- Preloader -->
+      <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+      <!-- Vendor JS Files -->
+      <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+      <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+      <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+      <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+      <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+      <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+      <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
 
-  <!-- Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
+      <!-- Main JS File -->
+      <script src="{% static 'assets/js/main.js' %}"></script>
 
-</body>
+    </body>
 
 </html>

@@ -18,22 +18,17 @@
                     <th>Nome</th>
                     <th>Código</th>
                     <th>Categoria</th>
-                    <th>Descrição</th>
-                    <th>Estoque</th>
-                    <th>Preço</th>
                     <th>Imagem</th>
                     <th>Ações</th>
                 </tr>
             </thead>
+            {% if not user.is_admin  %}
             <tbody>
                 {% for item in itens %}
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.code_item }}</td>
                     <td>{{ item.category }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.stock_quantity }}</td>
-                    <td>R$ {{ item.price|floatformat:2 }}</td>
                     <td>
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="Imagem" width="60" height="60" class="rounded">
@@ -42,14 +37,13 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="#"
-                            class="btn btn-sm btn-warning">Editar</a>
-                        <a href="#"
-                            class="btn btn-sm btn-danger">Excluir</a>
+                        <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="#" class="btn btn-sm btn-danger">Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
+            {% endif %}
         </table>
         {% else %}
         <div class="alert alert-info text-center">Nenhum item cadastrado.</div>

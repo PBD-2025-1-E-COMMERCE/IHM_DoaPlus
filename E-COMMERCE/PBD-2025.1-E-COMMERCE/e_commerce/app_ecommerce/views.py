@@ -6,8 +6,13 @@ from .models import Company, Item
 
 
 def index(request):
+    companies = Company.objects.all()
     itens = Item.objects.all().order_by('name')
-    context = {'itens': itens}
+    context = {
+        'itens': itens,
+        'companies': companies
+    }
+
     return render(request, 'index.html', context)
 
 
@@ -46,7 +51,9 @@ def list_companies(request):
 
 @login_required
 def list_itens(request):
-    itens = Item.objects.all().order_by('name')
+    user = request.user
+    company = user.company
+    itens = Item.objects.filter(company_id=user.company)
     context = {'itens': itens}
     return render(request, 'list_itens.html', context)
 

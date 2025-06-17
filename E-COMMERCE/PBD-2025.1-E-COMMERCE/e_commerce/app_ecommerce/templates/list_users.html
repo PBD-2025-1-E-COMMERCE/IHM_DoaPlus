@@ -22,6 +22,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
+            {% if not user.is_admin %}
             <tbody>
                 {% for user in users %}
                 <tr>
@@ -50,6 +51,7 @@
                 </tr>
                 {% endfor %}
             </tbody>
+            {% endif %}
         </table>
         {% else %}
         <div class="alert alert-info text-center">Nenhum usuário cadastrado.</div>

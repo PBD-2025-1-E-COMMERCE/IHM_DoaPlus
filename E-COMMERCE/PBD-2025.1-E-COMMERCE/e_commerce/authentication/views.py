@@ -12,10 +12,9 @@ def user_page(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save(commit=False)  # salva sem ainda salvar no banco
-            # ou 'password' dependendo do form
+            user = form.save(commit=False)
             password = form.cleaned_data.get('password')
-            user.set_password(password)  # agora sim, senha criptografada!
+            user.set_password(password)
             user.save()
             messages.success(request, "Usuário registrado com sucesso!")
             return redirect('ecommerce:index')
@@ -52,6 +51,8 @@ def handle_logout(request):
 
 @login_required
 def list_users(request):
-    users = User.objects.all()
+    user = request.user
+    company = user.company
+    users = User.objects.filter(company_id=user.company)
     contex = {'users': users}
     return render(request, 'list_users.html', contex)
