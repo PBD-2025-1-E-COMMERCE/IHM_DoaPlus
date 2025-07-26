@@ -57,8 +57,8 @@ class Image(models.Model):
 class ItemDetails(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.PROTECT)
-    size = models.ForeignKey(Size, on_delete=models.PROTECT)
-    storage = models.ForeignKey(Storage, on_delete=models.PROTECT)
+    size = models.ForeignKey(Size, on_delete=models.PROTECT, blank=True, null=True)
+    storage = models.ForeignKey(Storage, on_delete=models.PROTECT, blank=True, null=True)
 
     def __str__(self):
         return f" {self.color} - {self.size} - {self.storage}"

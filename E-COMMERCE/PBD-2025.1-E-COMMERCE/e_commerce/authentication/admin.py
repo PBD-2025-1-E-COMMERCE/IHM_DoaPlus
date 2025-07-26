@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib import admin
 from .models import _Group, Group, User
-from app_ecommerce.models import Item, Company, Category
 from django.core.exceptions import ValidationError
 
 
