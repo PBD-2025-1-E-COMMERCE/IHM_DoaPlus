@@ -2,7 +2,7 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterItem, RegisterCompany
-from .models import Company, Item, ItemDetails, Image
+from .models import Company, Item, ItemDetails, Image, Category
 
 
 def index(request):
@@ -92,3 +92,16 @@ def item_dashboard(request, id):
         'details': details,
     }
     return render(request, 'item_dashboard.html', context)
+
+
+def category_page(request, category):
+    categoria = get_object_or_404(Category, id=category)
+    item = Item.objects.filter(category=categoria)
+    companies = Company.objects.all()
+    context = {
+        'item': item,
+        'companies': companies
+    }
+
+    return render(request, 'category_page.html', context)
+

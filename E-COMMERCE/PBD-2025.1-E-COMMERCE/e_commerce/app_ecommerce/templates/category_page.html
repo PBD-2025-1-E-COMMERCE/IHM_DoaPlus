@@ -9,7 +9,7 @@
     <body class="index-page">
 
         <main class="main">
-            
+
 
             <section id="portfolio" class="portfolio section">
                 <div class="container">
@@ -26,33 +26,40 @@
 
                         <div div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                            {% for item in itens %}
+                            {% for item in item %}
                             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                                 <div class="portfolio-content h-100 shadow-sm">
 
-
+                                    {% if item.image %}
                                     <a href="{% url 'ecommerce:item_dashboard' item.code_item %}">
-                                        {% if item.image %}
                                         <img src="{{ item.image.url }}" class="img-fluid" alt="">
                                         {% else %}
                                         <span class="text-muted">Sem imagem</span>
                                         {% endif %}
-
-                                        <div class="portfolio-info">
-
-                                            <h4>{{ item.name }}</h4>
-                                        </div>
                                     </a>
-                                </div>
+                                    <div class="portfolio-info">
+                                        <h4>{{ item.name }}</h4>
+                                        <div style="text-align: right;">
+                                            {% if item.company_id %}
+                                            <a href="{% url 'ecommerce:company_page' item.company_id.id_company %}">
+                                                <img src="{{  item.company_id.logo.url }}" alt="Logo" width="40"
+                                                    height="40" class="rounded">
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
 
+                                </div>
                             </div>
                             {% endfor %}
+                        </div>
+                    
 
 
 
-                        </div><!-- End Portfolio Container -->
+                    </div><!-- End Portfolio Container -->
 
-                    </div>
+                </div>
 
                 </div>
 

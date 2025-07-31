@@ -7,7 +7,7 @@ app_name = 'ecommerce'
 urlpatterns = [
     path('', views.index, name='index'),
 
-   
+
     path('dash/', views.dash, name='dash'),
 
     path('create_item/', views.create_item, name='create_item'),
@@ -22,7 +22,9 @@ urlpatterns = [
 
 
     path('empresa/<str:id>/', views.company_page, name='company_page'),
-    path('item/<str:id>/', views.item_dashboard, name='item_dashboard'),
+    path('item/id/<str:id>/', views.item_dashboard, name='item_dashboard'),
+    path('item/categoria/<int:category>/',
+         views.category_page, name='category_page'),
 
 
 
