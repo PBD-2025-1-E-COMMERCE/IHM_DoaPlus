@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,10 +7,47 @@
     <meta charset="utf-8">
     <title>Lista de Itens</title>
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 20px 10px;
+        }
+
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+
+        }
+    </style>
 </head>
 
-<body class="bg-light">
-    <div class="container mt-5">
+<body>
+    <div class="sidebar">
+        {% include 'includes/sidebar.html' %}
+    </div>
+
+    <div class="main-content">
         <h2 class="mb-4 text-center">Itens Cadastrados</h2>
         {% if itens %}
         <table class="table table-bordered table-hover bg-white">
@@ -50,7 +88,12 @@
             <a href="#" class="btn btn-primary">Cadastrar Novo Item</a>
         </div>
     </div>
+
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
 </body>
 
 </html>

@@ -2,15 +2,22 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterItem, RegisterCompany
-from .models import Company, Item, ItemDetails, Image, Category
+from .models import Company, Item, ItemDetails, Image, Category, User
 
 
 def index(request):
+    query = request.GET.get('q')  
+
+    if query:
+        itens = Item.objects.filter(name__icontains=query)
+    else:
+        itens = Item.objects.all().order_by('name')
+
     companies = Company.objects.all()
-    itens = Item.objects.all().order_by('name')
+
     context = {
         'itens': itens,
-        'companies': companies
+        'companies': companies,
     }
 
     return render(request, 'index.html', context)
@@ -19,6 +26,7 @@ def index(request):
 @login_required
 def dash(request):
     user = request.user
+   
     return render(request, 'dash.html')
 
 
@@ -35,12 +43,11 @@ def create_item(request):
     context = {'form': form}
     return render(request, 'create_item.html', context)
 
-
 @login_required
-def companies(request):
+def list_companies(request):
     companies = Company.objects.all()
     context = {'companies': companies}
-    return render(request, 'companies.html', context)
+    return render(request, 'list_companies.html', context)
 
 
 @login_required
@@ -100,8 +107,15 @@ def category_page(request, category):
     companies = Company.objects.all()
     context = {
         'item': item,
-        'companies': companies
+        'companies': companies,
+        'categoria': categoria
     }
 
     return render(request, 'category_page.html', context)
+
+
+def companies(request):
+    companies = Company.objects.all()
+    context = {'companies': companies}
+    return render(request, 'companies.html', context)
 

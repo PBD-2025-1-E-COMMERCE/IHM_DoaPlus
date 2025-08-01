@@ -3,7 +3,117 @@
 
 {% block content %}
 {% include 'includes/header.html' %}
-{% include 'includes/hero.html '%}
+
+{% if categoria %}
+<section id="hero" class="hero section dark-background">
+    {% if categoria.id == 1 %}
+    <img src="{% static 'assets/img/moda.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Moda que te veste, estilo que te define<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 2 %}
+    <img src="{% static 'assets/img/celulares.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Tecnologia na palma da sua mão<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 3 %}
+    <img src="{% static 'assets/img/livros.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Cada livro, um universo em páginas<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 4 %}
+    <img src="{% static 'assets/img/eletrodomestico.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Facilidade pra sua casa. Economia pro seu bolso<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 5 %}
+    <img src="{% static 'assets/img/informatica.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Performance que acompanha seu ritmo<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 6 %}
+    <img src="{% static 'assets/img/game.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>Forje seu destino. Monte seu setup<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 8 %}
+    <img src="{% static 'assets/img/eletronico.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>O melhor do áudio e vídeo<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if categoria.id == 9 %}
+    <img src="{% static 'assets/img/televisores.jpg' %}" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-xl-6 col-lg-8">
+                <h2>"Sua TV dos sonhos tá aqui<span>.</span></h2>
+                <p>Tudo o que você precisa. Sem complicação</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</section>
+{% endif %}
+
 <main class="main">
 
     <body class="index-page">
@@ -53,7 +163,7 @@
                             </div>
                             {% endfor %}
                         </div>
-                    
+
 
 
 

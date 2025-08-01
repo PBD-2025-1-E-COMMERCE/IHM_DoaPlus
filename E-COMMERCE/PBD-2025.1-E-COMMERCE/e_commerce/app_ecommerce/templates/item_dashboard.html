@@ -7,15 +7,39 @@
 <body class="portfolio-details-page">
   <main class="main">
 
-
-    <!-- Page Title -->
     <div class="page-title" data-aos="fade">
       <nav class="breadcrumbs">
         {% if item.name %}
         <div class="container">
           <ol>
             <li><a href="{% url 'ecommerce:index' %}">Inicio</a></li>
-            <li><a href="#">{{item.category}}</a></li>
+            {% if item.category.id == 1 %}
+            <li><a href="{% url 'ecommerce:category_page' 1 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 2 %}
+            <li><a href="{% url 'ecommerce:category_page' 2 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 3 %}
+            <li><a href="{% url 'ecommerce:category_page' 3 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 4 %}
+            <li><a href="{% url 'ecommerce:category_page' 4 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 5 %}
+            <li><a href="{% url 'ecommerce:category_page' 5 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 6 %}
+            <li><a href="{% url 'ecommerce:category_page' 6 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 7 %}
+            <li><a href="{% url 'ecommerce:category_page' 7 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 8 %}
+            <li><a href="{% url 'ecommerce:category_page' 8 %}">{{item.category}}</a></li>
+            {% endif %}
+            {% if item.category.id == 9 %}
+            <li><a href="{% url 'ecommerce:category_page' 9 %}">{{item.category}}</a></li>
+            {% endif %}
             <li class="current">{{item.name}}</li>
           </ol>
         </div>

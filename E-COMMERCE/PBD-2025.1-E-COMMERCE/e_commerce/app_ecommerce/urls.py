@@ -17,14 +17,17 @@ urlpatterns = [
 
 
     path('create_company/', views.create_company, name='create_company'),
-    path('list_companies/', views.companies, name='companies'),
-    path('dash/companies/', views.companies, name='companies'),
+    path('dash/list_companies/', views.list_companies, name='list_companies'),
+    path('companiespage/', views.companies, name='companies'),
+
+
 
 
     path('empresa/<str:id>/', views.company_page, name='company_page'),
     path('item/id/<str:id>/', views.item_dashboard, name='item_dashboard'),
     path('item/categoria/<int:category>/',
          views.category_page, name='category_page'),
+   
 
 
 
