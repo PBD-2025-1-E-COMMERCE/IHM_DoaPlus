@@ -68,6 +68,14 @@
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="{% url 'ecommerce:home' %}" class="nav-link active">
+                        <i class="bi bi-house"></i>
+                        <span class="ms-2">Home</span>
+
+                    </a>
+                </li>
+
                 {% if user.is_admin %}
                 <li class="nav-item">
                     <a class="nav-link" href="/dash/list_companies/" data-url="/dash/list_companies/">
@@ -91,6 +99,7 @@
             </ul>
             <hr>
             <div class="dropdown">
+
                 {% if user %}
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,22 +109,20 @@
                 </a>
                 {% endif %}
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
                     <li><a class="dropdown-item" href="{% url 'authentication:logout' %}">Sair</a></li>
                 </ul>
             </div>
         </div>
 
+
         <!-- Conteúdo principal -->
         <div class="flex-grow-1 p-4">
             {% block content %}
-            <!-- Conteúdo será renderizado aqui -->
             {% endblock %}
+
         </div>
     </div>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"

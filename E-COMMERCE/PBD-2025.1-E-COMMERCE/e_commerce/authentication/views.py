@@ -9,34 +9,42 @@ from django.contrib.auth.decorators import login_required
 
 
 def user_page(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save(commit=False)
-            password = form.cleaned_data.get('password')
-            user.set_password(password)
-            user.save()
-            messages.success(request, "Usuário registrado com sucesso!")
-            return redirect('ecommerce:index')
-        else:
-            messages.error(request, "Corrija os erros abaixo.")
-    else:
-        form = UserRegistrationForm()
+    if request.method == 'GET':
+        user = User.objects.all()
+        return render(request, 'create_user.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        phone = request.POST.get('phone')
+        password = request.POST.get('password')
 
-    context = {'form': form}
-    return render(request, 'create_user.html', context)
+        user = User(
+            email=username,
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            password=password,
+        )
+
+        user.set_password(password)
+        user.save()
+        return redirect('authentication:login')
 
 
 def login_page(request):
     form = UserLoginForm()
-
+    user = request.user
+    if request.method == 'GET':
+        if user.is_authenticated :
+            return redirect('ecommerce:index') 
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
             user = authenticate(request, **form.cleaned_data)
             if user:
                 login(request, user=user)
-                return redirect('ecommerce:dash')
+                return redirect('ecommerce:home')
     context = {'form': form}
     return render(request, 'login.html', context)
 

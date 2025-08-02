@@ -6,13 +6,14 @@ from .models import Company, Item, ItemDetails, Image, Category, User
 
 
 def index(request):
+    itens = Item.objects.all().order_by('name')
     query = request.GET.get('q')
     user = request.user
 
     if query:
         itens = Item.objects.filter(name__icontains=query)
-    else:
-        itens = Item.objects.all().order_by('name')
+        if not itens.exists():
+            itens = Item.objects.all().order_by('name')
 
     companies = Company.objects.all()
 
@@ -80,8 +81,15 @@ def create_company(request):
 
 def company_page(request, id):
     company = get_object_or_404(Company, id_company=id)
-    itens = Item.objects.filter(company_id=company)
     companies = Company.objects.filter(logo=company.logo)
+    itens = Item.objects.filter(company_id=company)
+
+    query = request.GET.get('q')
+    if query:
+        itens = Item.objects.filter(company_id=company, name__icontains=query)
+        if not itens.exists():
+            itens = Item.objects.filter(company_id=company)
+
     context = {
         'company': company,
         'itens': itens,
@@ -92,9 +100,20 @@ def company_page(request, id):
 
 def item_dashboard(request, id):
     user = request.user
+    query = request.GET.get('q')
     item = get_object_or_404(Item, code_item=id)
     details = ItemDetails.objects.filter(item=item)
     galery = Image.objects.filter(item=item)
+
+    if query:
+        itens = Item.objects.filter(name__icontains=query)
+        if itens.count() >= 2:
+            context = {'itens': itens}
+            return render(request, 'index.html', context)
+        elif itens.count() == 1:    
+            item = itens.first()
+            details = ItemDetails.objects.filter(item=item)
+            galery = Image.objects.filter(item=item)
 
     context = {
         'item': item,
@@ -108,6 +127,12 @@ def category_page(request, category):
     categoria = get_object_or_404(Category, id=category)
     item = Item.objects.filter(category=categoria)
     companies = Company.objects.all()
+    query = request.GET.get('q')
+    if query:
+        item = Item.objects.filter(category=categoria, name__icontains=query)
+        if not item.exists():
+            item = Item.objects.filter(category=categoria)
+
     context = {
         'item': item,
         'companies': companies,
@@ -119,5 +144,14 @@ def category_page(request, category):
 
 def companies(request):
     companies = Company.objects.all()
+    query = request.GET.get('q')
+    if query:
+        companies = Company.objects.filter(name__icontains=query)
+    else:
+        companies = Company.objects.all().order_by('name')
     context = {'companies': companies}
     return render(request, 'companies.html', context)
+
+
+def home(request):
+    return render(request, "home.html")

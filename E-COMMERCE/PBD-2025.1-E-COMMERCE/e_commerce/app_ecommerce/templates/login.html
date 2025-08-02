@@ -1,17 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Login - GP</title>
+    <title>Login</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link href="{% static 'assets/img/novoicone.png' %}" rel="icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -29,45 +28,55 @@
 
     <!-- Main CSS File -->
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/login.css' %}" rel="stylesheet">
-
+    <style>
+        .login-bg {
+            min-height: 100vh;
+            background-image: url("{% static 'assets/img/login.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body>
-    <main class="w-100 d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-        <div class="login-card">
+    <main class="login-bg d-flex justify-content-center align-items-center">
+
+        <div class="login-card bg-white p-4 rounded shadow" style="min-width: 350px;">
             <form action="{% url 'authentication:login' %}" method="POST">
                 {% csrf_token %}
-                <div class="login-logo">
-                    <img src="{% static 'assets/img/logo.png' %}" alt="Logo" width="48" height="48"
-                        style="border-radius:8px;">
-                    <h1>GP</h1><span>.</span>
+                <div class="login-logo ">
+                    <h1>InstaShop<span>.</span></h1>
                 </div>
-                <h2 class="h4 mb-3 fw-bold text-center" style="color:var(--heading-color);">Acesse sua conta</h2>
-                <div class="d-flex flex-column gap-2">
-                    <div class="form-floating mb-2">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                            name='{{form.username.name}}' required>
-                        <label for="floatingInput">Email</label>
-                    </div>
-                    <div class="form-floating mb-2">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                            name='{{form.password.name}}' required>
-                        <label for="floatingPassword">Senha</label>
-                    </div>
+                <h2 class="h5 mb-3 fw-bold text-center">Acesse sua conta</h2>
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                        name="{{ form.username.name }}" required>
+                    <label for="floatingInput">Email</label>
                 </div>
-                <div class="form-check text-start my-3">
-                    <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault">
-                    <label class="form-check-label" for="checkDefault">Lembrar-me</label>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"
+                        name="{{ form.password.name }}" required>
+                    <label for="floatingPassword">Senha</label>
                 </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="remember-me" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Lembrar-me</label>
+                </div>
+
                 <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+
                 <div class="text-center mt-3">
                     <a href="{% url 'authentication:user' %}">Cadastrar conta</a>
                 </div>
-                <p class="mt-4 mb-2 text-center login-footer">&copy; 2017–2025 GP. Todos os direitos reservados.</p>
+
+                <p class="mt-4 mb-2 text-center text-muted">&copy; 2017–2025 GP. Todos os direitos reservados.</p>
             </form>
         </div>
     </main>
+
+    <!-- Scripts -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
     <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>

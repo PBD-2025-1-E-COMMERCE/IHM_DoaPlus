@@ -15,7 +15,8 @@
                         <p><strong>Email:</strong> <span>ramonalves1994@gmail.com</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
-                        <a href="https://www.instagram.com/ramonfraza0?igsh=MXE3ZTA0ODdtOTByag%3D%3D&utm_source=qr"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.instagram.com/ramonfraza0?igsh=MXE3ZTA0ODdtOTByag%3D%3D&utm_source=qr"><i
+                                class="bi bi-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/jose-ramon-82314a269"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
@@ -24,7 +25,8 @@
                     <h4>Links Uteis</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:index' %}"> Inicio</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:companies' %}"> Lojas</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{% url 'ecommerce:companies' %}"> Lojas</a>
+                        </li>
                         </li>
                     </ul>
                 </div>
@@ -32,14 +34,15 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Usuario</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{% url 'authentication:login' %}"> Entrar</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#"> Cadastrar</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{% url 'authentication:login' %}"> Entrar</a>
+                        </li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{% url 'authentication:user' %}"> Cadastrar</a></li>
 
-                        
+
                     </ul>
                 </div>
 
-                
+
             </div>
         </div>
     </div>
@@ -55,17 +58,6 @@
             </div>
         </div>
     </div>
-    </div>
-    <!-- Botão de login no canto inferior direito do rodapé -->
-    <a href="{% url 'authentication:login' %}" class="btn btn-primary btn-lg" style="
-        position: absolute;
-        right: 24px;
-        bottom: 24px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        z-index: 10;
-      ">
-        Efetuar Login
-    </a>
-    </div>
+
 
 </footer>
