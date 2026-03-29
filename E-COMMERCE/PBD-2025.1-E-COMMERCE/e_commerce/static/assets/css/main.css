@@ -167,11 +167,12 @@ h6 {
 
 .header .logo {
   line-height: 1;
-  
+
 }
 
 .header .logo img {
-  width: 100px;;
+  width: 100px;
+  ;
 }
 
 .header .logo h1 {
@@ -1584,7 +1585,7 @@ section,
 .portfolio-details .portfolio-details-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
-  
+
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
@@ -1864,7 +1865,3 @@ body {
 # Starter Section Section
 --------------------------------------------------------------*/
 
-
-/*.starter-section {
-  /* Add your styles here */
-/*}/*
