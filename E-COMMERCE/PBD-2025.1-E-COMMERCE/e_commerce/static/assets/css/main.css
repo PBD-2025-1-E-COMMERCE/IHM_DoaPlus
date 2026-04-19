@@ -1893,3 +1893,21 @@ body {
   font-size: 17px;
   font-weight: 500;
 }
+
+.btn-primary2 {
+  background: linear-gradient(90deg, #083ec6, #2a08b3);
+  border: none;
+}
+
+.btn-primary2:hover {
+  opacity: 0.9;
+}
+
+.progress {
+  border-radius: 20px;
+}
+
+.progress-bar {
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
