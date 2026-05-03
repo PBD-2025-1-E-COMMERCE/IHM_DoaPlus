@@ -1,9 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from app_ecommerce.models import Category, ItemDetails, Company, Item, Image, Color, Size, Storage
-
-
+from app_ecommerce.models import Category, ItemDetails, Company, Item, Image, Color, Size, Storage, Ongs, Causa
 
 class ItemDetailsInlinte(admin.TabularInline):
     model = ItemDetails
@@ -11,17 +9,17 @@ class ItemDetailsInlinte(admin.TabularInline):
 class ImageInline(admin.TabularInline):
     model = Image
 
-
-class ItemAdmin(admin.ModelAdmin):
+class CausaAdmin(admin.ModelAdmin):
     inlines = [
-        ImageInline,
-        ItemDetailsInlinte
+        ImageInline
     ]
     
-admin.site.register(Item, ItemAdmin)
+admin.site.register(Causa, CausaAdmin)
 admin.site.register(Company)
 admin.site.register(Category)
 admin.site.register(Color)
 admin.site.register(Size)
 admin.site.register(Storage)
+admin.site.register(Ongs)
+
 

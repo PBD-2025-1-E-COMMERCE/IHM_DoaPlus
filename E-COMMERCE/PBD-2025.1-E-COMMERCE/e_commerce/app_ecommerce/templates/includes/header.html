@@ -16,27 +16,15 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{% url 'ecommerce:index' %}" class="active">Inicio<br></a></li>
-                <li><a href="{% url 'ecommerce:companies' %}">Lojas</a></li>
+                <li><a href="{% url 'ecommerce:companies' %}">Lojas parceiras</a></li>
                 <li class="dropdown">
                     <a href="#">
-                        <span>Categoria</span>
+                        <span>Ajudar</span>
                         <i class="bi bi-chevron-down toggle-dropdown"> </i>
                     </a>
                     <ul>
-
-                        <li><a href="{% url 'ecommerce:category_page' 1 %}">Moda</a></li>
-                        <li class="dropdown"><a href="{% url 'ecommerce:category_page' 7 %}"><span>Tecnologia</span>
-                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="{% url 'ecommerce:category_page' 2 %}">Celulares</a></li>
-                                <li><a href="{% url 'ecommerce:category_page' 5 %}">Informatica</a></li>
-                                <li><a href="{% url 'ecommerce:category_page' 6 %}">Game</a></li>
-                                <li><a href="{% url 'ecommerce:category_page' 8 %}">Eletronicos, audio e video</a></li>
-                                <li><a href="{% url 'ecommerce:category_page' 9 %}">Televisores</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url 'ecommerce:category_page' 4 %}">Eletrodomesticos</a></li>
-                        <li><a href="{% url 'ecommerce:category_page' 3 %}">Livros</a></li>
+                        <li><a href="{% url 'ecommerce:category_page' 1 %}">Causas</a></li>
+                        <li><a href="{% url 'ecommerce:category_page' 2 %}">ONGs</a></li>
 
                     </ul>
                 </li>

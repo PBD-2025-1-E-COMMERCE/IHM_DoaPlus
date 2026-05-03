@@ -38,15 +38,6 @@
           </div>
         </div>
 
-        <div class="mb-4 d-flex">
-          <i class="bi bi-check2 text-warning fs-4 me-3"></i>
-          <div>
-            <h5 class="fw-bold text-primary mb-1">Acompanhe o impacto do seu gesto</h5>
-            <p class="text-muted mb-0">
-              Receba atualizações e saiba como sua ajuda está fazendo a diferença na vida de outras pessoas.
-            </p>
-          </div>
-        </div>
 
         <p class="fw-bold mt-4">Pronto para transformar vidas?</p>
 
@@ -107,7 +98,7 @@
           
           </script>
 
-      <h2 class="fw-bold mb-2">ONGs parceiras</h2>
+      <h2 class="fw-bold mb-2">Lojas parceiras</h2>
       <div class="swiper-wrapper align-items-center">
         {% for company in companies %}
         <div class="swiper-slide">
@@ -151,7 +142,7 @@
               50%
             </div>
           </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
+          <a href="#" class="readmore stretched-link">Saber mais <i
               class="bi bi-arrow-right"></i></a>
         </div>
       </div><!-- End Service Item -->
@@ -237,54 +228,7 @@
 
 </section>
 
-<section id="portfolio" class="portfolio section">
-  <div class="container">
 
-    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-        <li data-filter="*" class="filter-active">Todos</li>
-        <li data-filter=".filter-app">Mais vendidos</li>
-        <li data-filter=".filter-product">Promocao</li>
-        <li data-filter=".filter-branding">Diversos</li>
-      </ul>
-
-      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-        {% for item in itens %}
-        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-          <div class="portfolio-content h-100 shadow-sm">
-
-            {% if item.image %}
-            <a href="{% url 'ecommerce:item_dashboard' item.code_item %}">
-              <img src="{{ item.image.url }}" class="img-fluid" alt="">
-              {% else %}
-              <span class="text-muted">Sem imagem</span>
-              {% endif %}
-            </a>
-            <div class="portfolio-info">
-              <h4>{{ item.name }}</h4>
-              <div style="text-align: right;">
-                {% if item.company_id %}
-                <a href="{% url 'ecommerce:company_page' item.company_id.id_company %}">
-                  <img src="{{  item.company_id.logo.url }}" alt="Logo" width="40" height="40" class="rounded">
-                </a>
-                {% endif %}
-              </div>
-            </div>
-
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-
-      <!-- End Portfolio Container -->
-
-    </div>
-
-  </div>
-
-</section><!-- /Portfolio Section -->
 
 
 {% include 'includes/footer.html' %}

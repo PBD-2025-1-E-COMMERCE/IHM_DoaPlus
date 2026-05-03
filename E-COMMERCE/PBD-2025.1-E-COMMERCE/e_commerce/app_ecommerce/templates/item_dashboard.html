@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-
 <header id="header" class="header d-flex align-items-center position-relative" style="background-color: #000;">
   <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
     <a href="{% if company %}{% url 'ecommerce:company_page' company.id_company %}{% else %}{% url 'ecommerce:index' %}{% endif %}"
@@ -11,8 +10,8 @@
       {% if company and company.logo %}
       <img src="{{ company.logo.url }}" alt="{{ company.nome }}" class="logo-img">
       {% else %}
-      <h1 class="sitename">InstaShop</h1>
-      <span>.</span>
+      <h1 class="sitename">Doa</h1>
+      <span>+</span>
       {% endif %}
     </a>
 
@@ -22,24 +21,12 @@
         <li><a href="{% url 'ecommerce:companies' %}">Lojas</a></li>
         <li class="dropdown">
           <a href="#">
-            <span>Categoria</span>
+            <span>Como ajudar</span>
             <i class="bi bi-chevron-down toggle-dropdown"> </i>
           </a>
           <ul>
-
-            <li><a href="{% url 'ecommerce:category_page' 1 %}">Moda</a></li>
-            <li class="dropdown"><a href="{% url 'ecommerce:category_page' 7 %}"><span>Tecnologia</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="{% url 'ecommerce:category_page' 2 %}">Celulares</a></li>
-                <li><a href="{% url 'ecommerce:category_page' 5 %}">Informatica</a></li>
-                <li><a href="{% url 'ecommerce:category_page' 6 %}">Game</a></li>
-                <li><a href="{% url 'ecommerce:category_page' 8 %}">Eletronicos, audio e video</a></li>
-                <li><a href="{% url 'ecommerce:category_page' 9 %}">Televisores</a></li>
-              </ul>
-            </li>
-            <li><a href="{% url 'ecommerce:category_page' 4 %}">Eletrodomesticos</a></li>
-            <li><a href="{% url 'ecommerce:category_page' 3 %}">Livros</a></li>
+            <li><a href="{% url 'ecommerce:category_page' 4 %}">Causas</a></li>
+            <li><a href="{% url 'ecommerce:category_page' 3 %}">ONGs</a></li>
 
           </ul>
         </li>
@@ -73,163 +60,85 @@
           <li>
             <hr class="dropdown-divider">
           </li>
+
           <li><a class="dropdown-item" href="{% url 'authentication:logout' %}">Sair</a></li>
           {% endif %}
-
-
         </ul>
 
       </div>
 
     </div>
+
+
   </div>
 
   </div>
 </header>
 
-<body class="portfolio-details-page">
-  <main class="main">
-    <div class="page-title" data-aos="fade">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>{{item.name}}</h1>
-              <p class="mb-0">{{item.description}}</p>
+
+<section id="portfolio-details" class="portfolio-details section">
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-8">
+        <div class="portfolio-details-slider swiper init-swiper">
+
+          <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+          <div class="swiper-wrapper align-items-center">
+
+            <div class="swiper-slide">
+              <img src="{% static 'assets/img/portfolio/app-1.jpg' %}" alt="">
             </div>
+
           </div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
 
-    </div>
-
-    <div class="page-title" data-aos="fade">
-      <nav class="breadcrumbs">
-        {% if item.name %}
-        <div class="container">
-          <ol>
-            <li><a href="{% url 'ecommerce:index' %}">Inicio</a></li>
-            {% if item.category.id == 1 %}
-            <li><a href="{% url 'ecommerce:category_page' 1 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 2 %}
-            <li><a href="{% url 'ecommerce:category_page' 2 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 3 %}
-            <li><a href="{% url 'ecommerce:category_page' 3 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 4 %}
-            <li><a href="{% url 'ecommerce:category_page' 4 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 5 %}
-            <li><a href="{% url 'ecommerce:category_page' 5 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 6 %}
-            <li><a href="{% url 'ecommerce:category_page' 6 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 7 %}
-            <li><a href="{% url 'ecommerce:category_page' 7 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 8 %}
-            <li><a href="{% url 'ecommerce:category_page' 8 %}">{{item.category}}</a></li>
-            {% endif %}
-            {% if item.category.id == 9 %}
-            <li><a href="{% url 'ecommerce:category_page' 9 %}">{{item.category}}</a></li>
-            {% endif %}
-            <li class="current">{{item.name}}</li>
-          </ol>
-        </div>
-        {% endif %}
-      </nav>
-    </div>
-
-    <section id="portfolio-details" class="portfolio-details section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-
-          <div class="col-lg-2 d-flex flex-column gap-2">
-            {% if item.image %}
-            <a href="{{ item.image.url }}" data-lightbox="product-gallery">
-              <img src="{{ item.image.url }}" class="img-fluid border " alt="Miniatura principal">
-            </a>
-            {% endif %}
-
-            {% for img in galery %}
-            <a href="{{ img.image.url }}" data-lightbox="product-gallery">
-              <img src="{{ img.image.url }}" class="img-fluid border" alt="Miniatura extra">
-            </a>
-            {% endfor %}
-          </div>
-
-          <!-- Imagem principal com zoom -->
-          <div class="col-lg-6">
-            {% if item.image %}
-            <a href="{{ item.image.url }}" data-lightbox="product-gallery">
-              <img src="{{ item.image.url }}" class="img-fluid border rounded" alt="Imagem principal">
-            </a>
-            {% endif %}
-          </div>
-
-          <!-- Infos do item -->
-          <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Estoque disponivel</h3>
-              <div class="d-flex gap-3">
-                <!-- Cor -->
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Disponiveis
-                  </button>
-
-
-                  <ul class="dropdown-menu "
-                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 40px, 0px);"
-                    data-popper-placement="bottom-start">
-
-                    {% for d in details %}
-                    <li>
-                      {% if d.storage %}
-                      <a class="dropdown-item" href="#">{{ d.color }} - {{ d.storage }}</a>
-                      {% endif %}
-                      {% if d.size %}
-                      <a class="dropdown-item" href="#">{{ d.color }} - {{ d.size }}</a>
-                      {% endif %}
-                      {% if not d.storage and not d.size %}
-                      <a class="dropdown-item" href="#">{{ d.color }}</a>
-                      {% endif %}
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
+      <div class="col-lg-4">
+        <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+          <h3>Progresso
+            <div class="progress">
+              <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
+                50%
               </div>
-            </div>
-
-
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Descrição</h2>
-              <p>{{ item.description }}</p>
-            </div>
-          </div>
-
+          </h3>
+          <ul>
+            <li><strong>(Quantidade arrecadado)</strong></li>
+            <li><strong>(de tanto...)</strong></li>
+          </ul>
+        </div>
+        <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+          <h2>(Titulo da causa)</h2>
+          <p>
+            (descrição da causa)
+          </p>
         </div>
       </div>
-    </section>
 
-    <!-- /Portfolio Details Section -->
+    </div>
 
-  </main>
+  </div>
 
-  {% include 'includes/footer.html' %}
+</section>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+{% include 'includes/footer.html' %}
 
 {% endblock %}

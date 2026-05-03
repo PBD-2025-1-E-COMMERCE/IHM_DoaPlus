@@ -7,21 +7,29 @@ class Category(models.Model):
 
     def __str__(self):
         return f"{self.description} "
-    
+
+
 class Color(models.Model):
     color = models.CharField(max_length=100)
+
     def __str__(self):
         return f"{self.color}"
-    
+
+
 class Size(models.Model):
     size = models.CharField(max_length=100)
+
     def __str__(self):
         return f"{self.size}"
 
+
 class Storage(models.Model):
     storage = models.CharField(max_length=100)
+
     def __str__(self):
         return f"{self.storage}"
+
+
 class Company(models.Model):
     id_company = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=100)
@@ -47,19 +55,34 @@ class Item(models.Model):
         return f"Nome = {self.name}"
 
 
+class ItemDetails(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color, on_delete=models.PROTECT)
+    size = models.ForeignKey(
+        Size, on_delete=models.PROTECT, blank=True, null=True)
+    storage = models.ForeignKey(
+        Storage, on_delete=models.PROTECT, blank=True, null=True)
+
+    def __str__(self):
+        return f" {self.color} - {self.size} - {self.storage}"
+
+class Ongs(models.Model):
+    name = models.CharField(max_length=100)
+
+class Causa(models.Model):
+    title = models.CharField(max_length=20)
+    description = models.CharField(max_length=100, null=False, blank=False)
+    value = models.FloatField(null=False, blank=False)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    ong = models.ForeignKey(Ongs, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(
+        upload_to='itens_images/', null=False, blank=False)
+
+
 class Image(models.Model):
-    item = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name='gallery')
+    causa = models.ForeignKey(
+        Causa, on_delete=models.CASCADE, related_name='imagem_causa')
     image = models.ImageField(upload_to='itens_images/')
 
     def __str__(self):
         return f"Imagem de {self.item.name}"
-
-class ItemDetails(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.PROTECT)
-    size = models.ForeignKey(Size, on_delete=models.PROTECT, blank=True, null=True)
-    storage = models.ForeignKey(Storage, on_delete=models.PROTECT, blank=True, null=True)
-
-    def __str__(self):
-        return f" {self.color} - {self.size} - {self.storage}"

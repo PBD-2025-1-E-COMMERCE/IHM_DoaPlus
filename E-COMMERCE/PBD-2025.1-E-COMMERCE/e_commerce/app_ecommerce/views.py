@@ -98,8 +98,8 @@ def company_page(request, id):
     return render(request, 'company_page.html', context)
 
 
-def item_dashboard(request, id):
-    user = request.user
+def item_dashboard(request):
+    '''user = request.user
     query = request.GET.get('q')
     item = get_object_or_404(Item, code_item=id)
     details = ItemDetails.objects.filter(item=item)
@@ -119,8 +119,8 @@ def item_dashboard(request, id):
         'item': item,
         'galery': galery,
         'details': details,
-    }
-    return render(request, 'item_dashboard.html', context)
+    }'''
+    return render(request, 'item_dashboard.html')
 
 
 def category_page(request, category):
