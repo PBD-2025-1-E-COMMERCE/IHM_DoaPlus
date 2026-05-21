@@ -8,7 +8,7 @@ from .models import Company, Item, ItemDetails, Image, Category, User, Ongs, Cau
 
 def index(request):
     causas = Causa.objects.all().order_by('title')
-    causa = get_object_or_404(Causa)
+
     query = request.GET.get('q')
     user = request.user
 
@@ -18,7 +18,9 @@ def index(request):
             causas = Causa.objects.all().order_by('title')
 
     companies = Company.objects.all()
-    porcentagem = min((causa.valor_arrecadado / causa.value) * 100, 100)
+    for causa in causas:
+        porcentagem = min((causa.valor_arrecadado / causa.value) * 100, 100)
+        causa.porcentagem = porcentagem
 
     context = {
 
@@ -39,7 +41,7 @@ def index(request):
         itens = Item.objects.filter(name__icontains=query)
         if not itens.exists():
             itens = Item.objects.all().order_by('name')
-            
+
     companies = Company.objects.all()
 
     context = {
@@ -127,6 +129,8 @@ def item_dashboard(request, title):
     user = request.user
     query = request.GET.get('q')
     causa = get_object_or_404(Causa, title=title)
+    porcentagem = min((causa.valor_arrecadado / causa.value) * 100, 100)
+    causa.porcentagem = porcentagem
 
     if query:
         causas = Causa.objects.filter(name__icontains=query)
@@ -139,13 +143,13 @@ def item_dashboard(request, title):
     if request.method == "POST":
         valor = float(request.POST.get("valor"))
         causa.valor_arrecadado += Decimal(str(valor))
+        if (causa.porcentagem >= 100):
+            causa.ativo = False
         causa.save()
         return redirect('ecommerce:item_dashboard', title=causa.title)
 
-    porcentagem = min((causa.valor_arrecadado / causa.value) * 100, 100)
     context = {
         'causa': causa,
-        'porcentagem': porcentagem
     }
 
     return render(request, 'item_dashboard.html', context)

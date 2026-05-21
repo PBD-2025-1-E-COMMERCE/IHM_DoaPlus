@@ -8,48 +8,33 @@
 
 <section id="como-funciona" class="about section" style="background: #ffffff;">
 
-  <div class="container">
+  <div class="container" data-aos="fade-up">
     <div class="row align-items-center gy-5">
-
-      <!-- TEXTO -->
       <div class="col-lg-6">
 
-        <h2 class="fw-bold mb-2">Como o Doa+ Funciona</h2>
-        <p class="text-muted mb-4">Simples, Rápido e Seguro</p>
-
-        <div class="mb-4 d-flex">
-          <i class="bi bi-check2 text-warning fs-4 me-3"></i>
-          <div>
-            <h5 class="fw-bold text-primary mb-1">Escolha uma causa para apoiar</h5>
-            <p class="text-muted mb-0">
-              Navegue por diversas campanhas e encontre a causa que mais toca o seu coração.
-            </p>
-          </div>
+        <div class="container section-title">
+          <h2>Ajude uma causa</h2>
+          <p>Ganhe descontos</p>
         </div>
 
-        <div class="mb-4 d-flex">
-          <i class="bi bi-check2 text-warning fs-4 me-3"></i>
-          <div>
-            <h5 class="fw-bold text-primary mb-1">Faça sua doação de forma segura</h5>
-            <p class="text-muted mb-0">
-              Realize sua doação com confiança e transparência. O Doa+ garante que sua contribuição chegue até quem
-              realmente precisa.
-            </p>
-          </div>
-        </div>
+        <p class="text-muted mb-0">
+          Ao contribuir com uma causa, você também ganha. Receba cupons de desconto exclusivos para utilizar em nossas
+          lojas parceiras e transforme solidariedade em impacto real.
+        </p>
+
 
 
         <p class="fw-bold mt-4">Pronto para transformar vidas?</p>
 
-        <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">
-          Encontre uma causa para ajudar →
+        <a href="#causas" class="btn btn-primary px-4 py-2 rounded-pill">
+          Encontre uma causa para ajudar
         </a>
 
       </div>
 
       <!-- IMAGEM -->
       <div class="col-lg-6 text-center">
-        <img src="{% static 'assets/img/doar_imag.avif' %}" class="img-fluid rounded-4 shadow" alt="">
+        <img src="{% static 'assets/img/desconto.avif' %}" class="img-fluid rounded-4 " alt="">
       </div>
 
     </div>
@@ -58,8 +43,12 @@
 </section>
 
 
-<!-- Clientes Section -->
-<section id="clients" class="clients section">
+
+<section id="parceiros" class="clients section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Lojas Parceiras</h2>
+    <p>Empresas que acreditam no impacto social</p>
+  </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="swiper init-swiper">
@@ -98,8 +87,9 @@
           
           </script>
 
-      <h2 class="fw-bold mb-2">LOJAS PARCEIRAS</h2>
+
       <div class="swiper-wrapper align-items-center">
+
         {% for company in companies %}
         <div class="swiper-slide">
           {% if company.logo %}
@@ -120,20 +110,21 @@
 
 </section>
 
-<section id="services" class="services section">
+<section id="causas" class="services section">
 
-  <!-- Section Title -->
+
   <div class="container section-title" data-aos="fade-up">
     <h2>Escolha uma causa</h2>
     <p>Mude uma história</p>
-  </div><!-- End Section Title -->
+  </div>
 
   <div class="container">
 
     <div class="row gy-4">
-
+      {% for causa in causas %}
+      {% if causa.ativo %}
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        {% for causa in causas %}
+
         <div class="service-item  position-relative">
           {% if causa.image %}
           <div>
@@ -149,99 +140,31 @@
           <div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="75"
             aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar progress-bar-striped bg-warning"
-              style="width: {{ porcentagem|floatformat:0 }}%; min-width: 2em;">
-              {{ porcentagem|floatformat:0 }}%
+              style="width: {{ causa.porcentagem|floatformat:0 }}%; min-width: 2em;">
+              {{ causa.porcentagem|floatformat:0 }}%
             </div>
 
           </div>
-          <a href="#" class="readmore stretched-link">Saber mais <i class="bi bi-arrow-right"></i></a>
-        </div>
-        {% endfor %}
-      </div><!-- End Service Item -->
+          <a href="{% url 'ecommerce:item_dashboard' causa.title %}" class="readmore stretched-link"></a>
 
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-item  position-relative">
-          (imgem)
-          <h3>(Titulo da causa)</h3>
-          <p>(detalhes da causa)</p>
-          <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
-              50%
-            </div>
-          </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
-              class="bi bi-arrow-right"></i></a>
-        </div>
-      </div><!-- End Service Item -->
+          <p class="card-text"><small class="text-body-secondary">
+              <font dir="auto" style="vertical-align: inherit;">
+                <font dir="auto" style="vertical-align: inherit;">Criado por {{causa.creator.first_name}} </font>
+              </font>
+            </small>
+          </p>
 
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-item  position-relative">
-          (imgem)
-          <h3>(Titulo da causa)</h3>
-          <p>(detalhes da causa)</p>
-          <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
-              50%
-            </div>
-          </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
-              class="bi bi-arrow-right"></i></a>
         </div>
-      </div><!-- End Service Item -->
+        {% endif %}
 
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-item  position-relative">
-          (imgem)
-          <h3>(Titulo da causa)</h3>
-          <p>(detalhes da causa)</p>
-          <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
-              50%
-            </div>
-          </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
-              class="bi bi-arrow-right"></i></a>
-        </div>
-      </div><!-- End Service Item -->
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-item  position-relative">
-          (imgem)
-          <h3>(Titulo da causa)</h3>
-          <p>(detalhes da causa)</p>
-          <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
-              50%
-            </div>
-          </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
-              class="bi bi-arrow-right"></i></a>
-        </div>
-      </div><!-- End Service Item -->
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-item  position-relative">
-          (imgem)
-          <h3>(Titulo da causa)</h3>
-          <p>(detalhes da causa)</p>
-          <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 50%">
-              50%
-            </div>
-          </div>
-          <a href="service-details.html" class="readmore stretched-link">Saber mais <i
-              class="bi bi-arrow-right"></i></a>
-        </div>
-      </div><!-- End Service Item -->
+      </div>
+      {% endfor %}
 
     </div>
 
   </div>
 
 </section>
-
-
-
 
 {% include 'includes/footer.html' %}
 

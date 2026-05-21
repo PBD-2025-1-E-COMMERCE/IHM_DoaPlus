@@ -76,6 +76,8 @@ class Causa(models.Model):
     description = models.CharField(max_length=100, null=False, blank=False)
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     valor_arrecadado = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    porcentagem = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    ativo = models.BooleanField(default=True)
     creator = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True, null=True)
     ong = models.ForeignKey(

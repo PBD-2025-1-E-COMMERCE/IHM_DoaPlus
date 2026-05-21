@@ -113,26 +113,31 @@
       </div>
 
       <div class="col-lg-4">
+        
         <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+         
           <h3>Progresso
             <div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="75"
               aria-valuemin="0" aria-valuemax="100">
               <div class="progress-bar progress-bar-striped bg-warning"
-                style="width: {{ porcentagem|floatformat:0 }}%; min-width: 2em;">
-                {{ porcentagem|floatformat:0 }}%
+                style="width: {{ causa.porcentagem|floatformat:0 }}%; min-width: 2em;">
+                {{ causa.porcentagem|floatformat:0 }}%
               </div>
 
             </div>
           </h3>
+
           <ul>
             <li><strong>Quantidade arrecadado: R$: {{ causa.valor_arrecadado }}</strong></li>
             <li><strong>De: R$: {{ causa.value }}</strong></li>
           </ul>
           <!-- Button trigger modal -->
+           {% if causa.ativo == True %}
+
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Ajudar
           </button>
-
+          {% endif %}
           <!-- Modal -->
           <form method="POST">
             {% csrf_token %}
@@ -158,6 +163,7 @@
               </div>
             </div>
           </form>
+        
         </div>
         <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
           <h2>{{ causa.title }}</h2>
