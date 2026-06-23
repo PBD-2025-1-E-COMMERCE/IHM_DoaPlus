@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('dash/home', views.home, name='home'),
 
-    path('create_item/', views.create_item, name='create_item'),
+    path('create_campanha/', views.create_campanha, name='create_campanha'),
     path('list_itens/', views.list_itens, name='list_itens'),
     path('dash/list_itens/', views.list_itens, name='list_itens'),
 
@@ -22,7 +22,7 @@ urlpatterns = [
 
    
     path('empresa/<str:id>/', views.company_page, name='company_page'),
-    path('causa/<str:title>', views.item_dashboard, name='item_dashboard'),
+    path('causa/<str:title>', views.causa_dashboard, name='causa_dashboard'),
     path('item/categoria/<int:category>/',
          views.category_page, name='category_page'),
 

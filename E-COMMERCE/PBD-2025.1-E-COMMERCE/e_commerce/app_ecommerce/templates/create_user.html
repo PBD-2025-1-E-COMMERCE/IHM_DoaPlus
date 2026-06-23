@@ -9,24 +9,20 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <!-- Favicons -->
     <link href="{% static 'assets/img/novoicone.png' %}" rel="icon">
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
 
-    <!-- Main CSS File -->
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
     <style>
@@ -46,7 +42,7 @@
             <form action="{% url 'authentication:user' %}" method="POST">
                 {% csrf_token %}
                 <div class="login-logo">
-                    <h1>InstaShop<span>.</span></h1>
+                    <h1>Doa<span>+</span></h1>
                 </div>
                 <h2 class="h5 mb-3 fw-bold text-center">Crie sua conta</h2>
 
@@ -79,14 +75,16 @@
                     <label for="passwordInput">Senha</label>
                 </div>
 
-                <button class="btn btn-primary w-100 py-2" type="submit">Cadastrar</button>
+                <div class="d-flex gap-2 mt-4">
+                    <button class="btn btn-primary w-100 py-2" type="submit">Cadastrar</button>
+                    <a href="{% url 'ecommerce:index' %}" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center text-decoration-none">Cancelar</a>
+                </div>
 
-                <p class="mt-4 mb-2 text-center text-muted">&copy; 2017–2025 GP. Todos os direitos reservados.</p>
+                <p class="mt-4 mb-2 text-center text-muted">&copy; Todos os direitos reservados.</p>
             </form>
         </div>
     </main>
 
-    <!-- Scripts -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
     <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>

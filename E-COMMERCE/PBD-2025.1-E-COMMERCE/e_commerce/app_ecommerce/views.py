@@ -1,9 +1,13 @@
 from pyexpat.errors import messages
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.urls import reverse
+from decimal import Decimal
 from decimal import Decimal
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterItem, RegisterCompany
-from .models import Company, Item, ItemDetails, Image, Category, User, Ongs, Causa
+from .models import Company, Item, ItemDetails, Image, Category, User, Ongs, Causa, Cupom
 
 
 def index(request):
@@ -59,9 +63,8 @@ def dash(request):
     return render(request, 'dash.html')
 
 
-@login_required
-def create_item(request):
-    form = RegisterItem()
+def create_campanha(request):
+    """form = RegisterItem()
     if request.method == 'POST':
         form = RegisterItem(request.POST, request.FILES)
         if form.is_valid():
@@ -69,8 +72,8 @@ def create_item(request):
             return redirect('ecommerce:sales_dashboard')
     else:
         form = RegisterItem()
-    context = {'form': form}
-    return render(request, 'create_item.html', context)
+    context = {'form': form}"""
+    return render(request, 'create_campanha.html')
 
 
 @login_required
@@ -125,12 +128,16 @@ def company_page(request, id):
     return render(request, 'company_page.html', context)
 
 
-def item_dashboard(request, title):
+def causa_dashboard(request, title):
     user = request.user
     query = request.GET.get('q')
     causa = get_object_or_404(Causa, title=title)
-    porcentagem = min((causa.valor_arrecadado / causa.value) * 100, 100)
-    causa.porcentagem = porcentagem
+
+    if causa.value > 0:
+        causa.porcentagem = min(
+            (causa.valor_arrecadado / causa.value) * 100, 100)
+    else:
+        causa.porcentagem = 0
 
     if query:
         causas = Causa.objects.filter(name__icontains=query)
@@ -141,18 +148,58 @@ def item_dashboard(request, title):
             causa = causas.first()
 
     if request.method == "POST":
-        valor = float(request.POST.get("valor"))
+        valor_str = request.POST.get("valor")
+
+        if not valor_str:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'sucesso': False, 'erro': 'Valor inválido'}, status=400)
+            return redirect('ecommerce:causa_dashboard', title=causa.title)
+
+        valor = float(valor_str)
         causa.valor_arrecadado += Decimal(str(valor))
-        if (causa.porcentagem >= 100):
+
+        if request.user.is_authenticated:
+            try:
+                cupom_ganho = None
+
+                if 50.00 <= valor < 100.00:
+                    cupom_ganho = Cupom.objects.get(codigo="CUPOM10")
+                elif 100.00 <= valor < 200.00:
+                    cupom_ganho = Cupom.objects.get(codigo="CUPOM20")
+                elif 200.00 <= valor < 500.00:
+                    cupom_ganho = Cupom.objects.get(codigo="VOUCHER50")
+                elif valor >= 500.00:
+                    cupom_ganho = Cupom.objects.get(codigo="VOUCHER100")
+
+                if cupom_ganho:
+                    request.user.cupom.add(cupom_ganho)
+
+            except Cupom.DoesNotExist:
+                print("Cupom não encontrado no sistema.")
+
+        if causa.value > 0:
+            causa.porcentagem = min(
+                (causa.valor_arrecadado / causa.value) * 100, 100)
+
+        if causa.porcentagem >= 100:
             causa.ativo = False
+
         causa.save()
-        return redirect('ecommerce:item_dashboard', title=causa.title)
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'sucesso': True,
+                'url': reverse('ecommerce:causa_dashboard', args=[causa.title]),
+                'cupom': cupom_ganho.codigo if cupom_ganho else None
+            })
+
+        return redirect('ecommerce:causa_dashboard', title=causa.title)
 
     context = {
         'causa': causa,
     }
 
-    return render(request, 'item_dashboard.html', context)
+    return render(request, 'causa_dashboard.html', context)
 
 
 '''def item_dashboard(request):
@@ -214,6 +261,7 @@ def companies(request):
 
 def home(request):
     return render(request, "home.html")
+
 
 def meus_cupons(request):
     return render(request, 'list_cupons.html')

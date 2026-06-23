@@ -44,7 +44,7 @@ def login_page(request):
             user = authenticate(request, **form.cleaned_data)
             if user:
                 login(request, user=user)
-                return redirect('ecommerce:home')
+                return redirect('ecommerce:index')
     context = {'form': form}
     return render(request, 'login.html', context)
 

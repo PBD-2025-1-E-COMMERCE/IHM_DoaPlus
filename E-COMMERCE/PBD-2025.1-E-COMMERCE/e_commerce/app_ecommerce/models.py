@@ -72,8 +72,8 @@ class Ongs(models.Model):
 
 
 class Causa(models.Model):
-    title = models.CharField(max_length=20)
-    description = models.CharField(max_length=100, null=False, blank=False)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=450, null=False, blank=False)
     value = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     valor_arrecadado = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00)
@@ -89,9 +89,6 @@ class Causa(models.Model):
 
 
 class Cupom(models.Model):
-
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, blank=True)
 
     codigo = models.CharField(max_length=20, unique=True)
 

@@ -1,83 +1,130 @@
 {% load static %}
-<header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center">
+
+        <!-- Logo -->
         <a href="{% if company %}{% url 'ecommerce:company_page' company.id_company %}{% else %}{% url 'ecommerce:index' %}{% endif %}"
-            class="logo d-flex align-items-center">
+            class="logo d-flex align-items-center me-auto">
 
             {% if company and company.logo %}
             <img src="{{ company.logo.url }}" alt="{{ company.nome }}" class="logo-img">
             {% else %}
-            <h1 class="sitename">Doa</h1>
-            <span>+</span>
+            <div class="d-flex align-items-center">
+                <h1 class="sitename mb-0">Doa</h1>
+                <span class="ms-1 text-warning fs-2">+</span>
+            </div>
             {% endif %}
         </a>
 
-        <nav id="navmenu" class="navmenu">
+        <!-- Menu -->
+        <nav id="navmenu" class="navmenu mx-auto">
             <ul>
-                <li><a href="{% url 'ecommerce:index' %}" class="active">Inicio<br></a></li>
-                <li><a href="{% url 'ecommerce:companies' %}">Lojas parceiras</a></li>
+                <li>
+                    <a href="{% url 'ecommerce:index' %}" class="active">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'ecommerce:companies' %}">
+                        Lojas parceiras
+                    </a>
+                </li>
+
                 <li class="dropdown">
                     <a href="#">
                         <span>Ajudar</span>
-                        <i class="bi bi-chevron-down toggle-dropdown"> </i>
+                        <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
-                    <ul>
-                        <li><a href="{% url 'ecommerce:category_page' 1 %}">Causas</a></li>
-                        <li><a href="{% url 'ecommerce:category_page' 2 %}">ONGs</a></li>
 
+                    <ul>
+                        <li>
+                            <a href="{% url 'ecommerce:category_page' 1 %}">
+                                Causas
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'ecommerce:category_page' 2 %}">
+                                ONGs
+                            </a>
+                        </li>
                     </ul>
                 </li>
-
             </ul>
+
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <div class="d-flex align-items-center justify-content-between gap-3">
-            <!-- Campo de busca -->
-            <form method="get" action="">
+        <!-- Busca + Usuário -->
+        <div class="d-flex align-items-center gap-3 ms-auto flex-nowrap">
+
+            <!-- Busca (desktop apenas) -->
+            <form method="get" action="" class="d-none d-md-block">
                 <input type="search" name="q" class="form-control" placeholder="Buscar..." aria-label="Search"
-                    style="color: #000;">
-                <button type="submit" class="btn btn-primary" style="display: none;">Buscar</button>
+                    style="width:220px; color:#000;">
             </form>
+
             {% if user.is_authenticated %}
-            <div style="color:aliceblue;">Olá, {{user.first_name}}!</div>
-            {% endif %}
-            <!-- Dropdown do usuário -->
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'assets/img/people.png' %}" alt="mdo" width="32" height="32"
-                        class="rounded-circle"> </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    {% if not user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'authentication:login' %}">Entrar</a></li>
-                    <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'ecommerce:home' %}">Meus Cupons</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'ecommerce:create_item' %}">
-                            Minhas campanhas
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'authentication:logout' %}">Sair</a></li>
-                    {% endif %}
 
+            <!-- Saudação + Perfil -->
+            <div class="d-flex align-items-center gap-2">
 
-                </ul>
+                <span class="text-white d-none d-lg-inline">
+                    Olá, {{ user.first_name }}!
+                </span>
+
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <img src="{% static 'assets/img/people.png' %}" width="35" height="35" class="rounded-circle"
+                            alt="Perfil">
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'ecommerce:home' %}">
+                                Meus Cupons
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'ecommerce:create_campanha' %}">
+                                Minhas campanhas
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'authentication:logout' %}">
+                                Sair
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
 
             </div>
 
+            {% else %}
+
+            <a class="btn btn-outline-warning" href="{% url 'authentication:login' %}">
+                Login
+            </a>
+
+            {% endif %}
+
         </div>
 
-
     </div>
-
 </header>

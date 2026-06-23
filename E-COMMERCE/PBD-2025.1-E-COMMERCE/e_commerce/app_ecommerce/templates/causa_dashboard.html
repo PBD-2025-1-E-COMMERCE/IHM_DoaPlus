@@ -15,59 +15,114 @@
       {% endif %}
     </a>
 
-    <nav id="navmenu" class="navmenu">
+    <nav id="navmenu" class="navmenu mx-auto">
       <ul>
-        <li><a href="{% url 'ecommerce:index' %}" class="active">Inicio<br></a></li>
-        <li><a href="{% url 'ecommerce:companies' %}">Lojas</a></li>
-        <li class="dropdown">
-          <a href="#">
-            <span>Como ajudar</span>
-            <i class="bi bi-chevron-down toggle-dropdown"> </i>
+        <li>
+          <a href="{% url 'ecommerce:index' %}" class="active">
+            Inicio
           </a>
-          <ul>
-            <li><a href="{% url 'ecommerce:category_page' 4 %}">Causas</a></li>
-            <li><a href="{% url 'ecommerce:category_page' 3 %}">ONGs</a></li>
-
-          </ul>
         </li>
 
+        <li>
+          <a href="{% url 'ecommerce:companies' %}">
+            Lojas parceiras
+          </a>
+        </li>
+
+        <li class="dropdown">
+          <a href="#">
+            <span>Ajudar</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+
+          <ul>
+            <li>
+              <a href="{% url 'ecommerce:category_page' 1 %}">
+                Causas
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'ecommerce:category_page' 2 %}">
+                ONGs
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
+
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
 
-    <div class="d-flex align-items-center justify-content-between gap-3">
-      <!-- Campo de busca -->
-      <form method="get" action="">
-        <input type="search" name="q" class="form-control" placeholder="Buscar..." aria-label="Search"
-          style="color: #000;">
-        <button type="submit" class="btn btn-primary" style="display: none;">Buscar</button>
-      </form>
-      {% if user.is_authenticated %}
-      <div style="color:aliceblue;">Olá, {{user.first_name}}!</div>
-      {% endif %}
-      <!-- Dropdown do usuário -->
-      <div class="dropdown text-end">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <img src="{% static 'assets/img/people.png' %}" alt="mdo" width="32" height="32" class="rounded-circle"> </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          {% if not user.is_authenticated %}
-          <li><a class="dropdown-item" href="{% url 'authentication:login' %}">Entrar</a></li>
-          <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <li><a class="dropdown-item" href="{% url 'ecommerce:home' %}">Dashboard</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+    <!-- Busca + Usuário -->
+    <div class="d-flex align-items-center gap-3 ms-auto flex-nowrap">
 
-          <li><a class="dropdown-item" href="{% url 'authentication:logout' %}">Sair</a></li>
-          {% endif %}
-        </ul>
+      <!-- Busca (desktop apenas) -->
+      <form method="get" action="" class="d-none d-md-block">
+        <input type="search" name="q" class="form-control" placeholder="Buscar..." aria-label="Search"
+          style="width:220px; color:#000;">
+      </form>
+
+      {% if user.is_authenticated %}
+
+      <!-- Saudação + Perfil -->
+      <div class="d-flex align-items-center gap-2">
+
+        <span class="text-white d-none d-lg-inline">
+          Olá, {{ user.first_name }}!
+        </span>
+
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            <img src="{% static 'assets/img/people.png' %}" width="35" height="35" class="rounded-circle" alt="Perfil">
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+
+            <li>
+              <a class="dropdown-item" href="{% url 'ecommerce:home' %}">
+                Meus Cupons
+              </a>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="{% url 'ecommerce:create_campanha' %}">
+                Minhas campanhas
+              </a>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="{% url 'authentication:logout' %}">
+                Sair
+              </a>
+            </li>
+
+          </ul>
+        </div>
 
       </div>
 
+      {% else %}
+
+      <a class="btn btn-outline-warning" href="{% url 'authentication:login' %}">
+        Login
+      </a>
+
+      {% endif %}
+
     </div>
+
+  </div>
 
 
   </div>
@@ -113,9 +168,9 @@
       </div>
 
       <div class="col-lg-4">
-        
+
         <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-         
+
           <h3>Progresso
             <div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="75"
               aria-valuemin="0" aria-valuemax="100">
@@ -132,15 +187,16 @@
             <li><strong>De: R$: {{ causa.value }}</strong></li>
           </ul>
           <!-- Button trigger modal -->
-           {% if causa.ativo == True %}
+          {% if causa.ativo == True %}
 
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Ajudar
           </button>
           {% endif %}
           <!-- Modal -->
-          <form method="POST">
+          <form method="POST" id="formContribuicao">
             {% csrf_token %}
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">
@@ -156,6 +212,7 @@
                     </div>
                   </div>
                   <div class="modal-footer">
+                    <div id="liveAlertPlaceholder"></div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                   </div>
@@ -163,7 +220,7 @@
               </div>
             </div>
           </form>
-        
+
         </div>
         <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
           <h2>{{ causa.title }}</h2>
@@ -178,6 +235,70 @@
   </div>
 
 </section>
+<script>
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+  const form = document.getElementById('formContribuicao');
+
+  // Função que cria e exibe o alerta
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('');
+
+    alertPlaceholder.innerHTML = '';
+    alertPlaceholder.append(wrapper);
+  }
+
+  if (form) {
+    form.addEventListener('submit', function (event) {
+      // 1. Impede a página de recarregar na mesma hora
+      event.preventDefault();
+
+      // 2. Coleta os dados do formulário
+      const formData = new FormData(this);
+
+      // 3. Envia os dados para o servidor
+      fetch(window.location.href, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Erro no servidor');
+          }
+        })
+        .then(data => {
+          // 1. Mensagem base padrão
+          let mensagem = 'Obrigado! Sua contribuição foi registrada com sucesso.';
+
+          // 2. Se o Django devolveu um cupom, adiciona na mensagem
+          if (data.cupom) {
+            mensagem += ` 🎉 Você ganhou o cupom: <strong>${data.cupom}</strong>!`;
+          }
+
+          // 3. Exibe o alerta com a mensagem dinâmica
+          appendAlert(mensagem, 'success');
+
+          // Aguarda os mesmos 2 segundos e redireciona
+          setTimeout(() => {
+            window.location.href = data.url;
+          }, 2000);
+        })
+        .catch(error => {
+          appendAlert('Houve um erro ao processar sua contribuição.', 'danger');
+        });
+    });
+  }
+</script>
 
 {% include 'includes/footer.html' %}
 

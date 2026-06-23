@@ -45,7 +45,7 @@
             <form action="{% url 'authentication:login' %}" method="POST">
                 {% csrf_token %}
                 <div class="login-logo ">
-                    <h1>InstaShop<span>.</span></h1>
+                    <h1>Doa<span>+</span></h1>
                 </div>
                 <h2 class="h5 mb-3 fw-bold text-center">Acesse sua conta</h2>
 
@@ -65,13 +65,17 @@
                     <label class="form-check-label" for="rememberMe">Lembrar-me</label>
                 </div>
 
-                <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+                <div class="d-flex gap-2 mt-4">
+                    <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+                    <a href="{% url 'ecommerce:index' %}"
+                        class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center text-decoration-none">Cancelar</a>
+                </div>
 
                 <div class="text-center mt-3">
                     <a href="{% url 'authentication:user' %}">Cadastrar conta</a>
                 </div>
 
-                <p class="mt-4 mb-2 text-center text-muted">&copy; 2017–2025 GP. Todos os direitos reservados.</p>
+                <p class="mt-4 mb-2 text-center text-muted">&copy; Todos os direitos reservados.</p>
             </form>
         </div>
     </main>

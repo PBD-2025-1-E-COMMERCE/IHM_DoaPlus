@@ -38,7 +38,7 @@ class UserAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=...):
         fieldsets = [
             ("User Info", {"fields": [
-             "email", "first_name", "last_name", "phone", "company"]}),
+             "email", "first_name", "last_name", "phone", "company", "cupom"]}),
         ]
         if obj:
             fieldsets += [

@@ -127,8 +127,9 @@
 
         <div class="service-item  position-relative">
           {% if causa.image %}
-          <div>
-            <img src="{{ causa.image.url }}" class="img-thumbnail" alt="...">
+          <div style="width:100%; height:300px; overflow:hidden;">
+            <img src="{{ causa.image.url }}" class="img-thumbnail" alt="{{ causa.title }}"
+              style="width:100%; height:100%; object-fit:cover;">
           </div>
           {% else %}
           <span class="text-muted">Sem Imagem</span>
@@ -145,7 +146,7 @@
             </div>
 
           </div>
-          <a href="{% url 'ecommerce:item_dashboard' causa.title %}" class="readmore stretched-link"></a>
+          <a href="{% url 'ecommerce:causa_dashboard' causa.title %}" class="readmore stretched-link"></a>
 
           <p class="card-text"><small class="text-body-secondary">
               <font dir="auto" style="vertical-align: inherit;">
