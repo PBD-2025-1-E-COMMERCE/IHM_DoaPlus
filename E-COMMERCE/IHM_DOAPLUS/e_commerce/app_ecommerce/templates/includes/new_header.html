@@ -2,183 +2,144 @@
 
 <header id="header" class="header d-flex align-items-center position-relative" style="background-color: #000;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-        <a href="{% if company %}{% url 'ecommerce:company_page' company.id_company %}{% else %}{% url 'ecommerce:index' %}{% endif %}"
-            class="logo d-flex align-items-center">
 
+        <a href="{% if company %}{% url 'ecommerce:company_page' company.id_company %}{% else %}{% url 'ecommerce:index' %}{% endif %}"
+            class="logo d-flex align-items-center me-2">
             {% if company and company.logo %}
             <img src="{{ company.logo.url }}" alt="{{ company.nome }}" class="logo-img">
             {% else %}
-            <h1 class="sitename">Doa</h1>
-            <span>+</span>
+            <h1 class="sitename mb-0 text-white fw-bold">Doa</h1>
+            <span class="ms-1 text-warning fs-2 fw-bold">+</span>
             {% endif %}
         </a>
 
-        <nav id="navmenu" class="navmenu mx-auto">
+        <nav id="navmenu" class="navmenu">
             <ul>
-                <li>
-                    <a href="{% url 'ecommerce:index' %}" class="active">
-                        Inicio
-                    </a>
+                <li class="d-md-none p-3 border-bottom mb-2">
+                    <form method="get" action="{% url 'ecommerce:index' %}" class="w-100">
+                        <input type="search" name="q" class="form-control text-dark" placeholder="Buscar no Doa+..."
+                            aria-label="Search">
+                    </form>
                 </li>
 
-                <li>
-                    <a href="{% url 'ecommerce:companies' %}">
-                        Lojas parceiras
-                    </a>
-                </li>
-
+                <li><a href="{% url 'ecommerce:index' %}" class="active">Inicio</a></li>
+                <li><a href="{% url 'ecommerce:companies' %}">Lojas parceiras</a></li>
                 <li class="dropdown">
                     <a href="#">
                         <span>Ajudar</span>
                         <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
-
                     <ul>
-                        <li>
-                            <a href="{% url 'ecommerce:category_page' 1 %}">
-                                Causas
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{% url 'ecommerce:category_page' 2 %}">
-                                ONGs
-                            </a>
-                        </li>
+                        <li><a href="{% url 'ecommerce:category_page' 1 %}">Causas</a></li>
+                        <li><a href="{% url 'ecommerce:category_page' 2 %}">ONGs</a></li>
                     </ul>
                 </li>
             </ul>
-
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list text-white fs-2"></i>
         </nav>
 
-        <!-- Busca + Usuário -->
-        <div class="d-flex align-items-center gap-3 ms-auto flex-nowrap">
+        <div class="d-flex align-items-center gap-2 gap-md-3">
 
-            <!-- Busca (desktop apenas) -->
-            <form method="get" action="" class="d-none d-md-block">
-                <input type="search" name="q" class="form-control" placeholder="Buscar..." aria-label="Search"
-                    style="width:220px; color:#000;">
+            <form method="get" action="{% url 'ecommerce:index' %}" class="d-none d-md-block">
+                <input type="search" name="q" class="form-control text-dark" placeholder="Buscar..." aria-label="Search"
+                    style="width:180px; font-size: 14px;">
             </form>
 
             {% if user.is_authenticated %}
-
-            <!-- Saudação + Perfil -->
             <div class="d-flex align-items-center gap-2">
-
-                <span class="text-white d-none d-lg-inline">
+                <span class="text-white d-none d-lg-inline fs-7">
                     Olá, {{ user.first_name }}!
                 </span>
 
                 <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle hide-caret"
                         data-bs-toggle="dropdown" aria-expanded="false">
-
-                        <img src="{% static 'assets/img/people.png' %}" width="35" height="35" class="rounded-circle"
-                            alt="Perfil">
+                        <img src="{% static 'assets/img/people.png' %}" width="34" height="34"
+                            class="rounded-circle border border-2 border-warning" alt="Perfil">
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 250px;">
+                    <ul class="dropdown-menu dropdown-menu-end p-2 mt-2 shadow" style="min-width: 250px;">
                         <li>
-                            <span class="dropdown-header fw-bold text-dark px-2">Meus Cupons <i></i></span>
+                            <span class="dropdown-header fw-bold text-dark px-2">Meus Cupons</span>
                         </li>
-
-                        <ul class="list-unstyled d-flex flex-column gap-2 px-2 mt-1">
-                            {% for cupom in user.cupom.all %}
-                            <li class="d-flex justify-content-between align-items-center py-1 border-bottom-subtil">
-                                <span class="text-secondary fs-6">
-                                    {{ cupom.codigo }}
-                                </span>
-                                <a href="{% url 'ecommerce:companies' %}" class="btn btn-sm btn-usar-cupom">
-                                    Usar
-                                </a>
-                            </li>
-                            {% empty %}
-                            <li class="text-center py-2 text-muted fs-7">
-                                Nenhum cupom disponível
-                            </li>
-                            {% endfor %}
-                        </ul>
-
-
+                        <li>
+                            <ul class="list-unstyled d-flex flex-column gap-2 px-2 mt-1">
+                                {% for cupom in user.cupom.all %}
+                                <li class="d-flex justify-content-between align-items-center py-1 border-bottom-subtil">
+                                    <span class="text-secondary fs-6">{{ cupom.codigo }}</span>
+                                    <a href="{% url 'ecommerce:companies' %}" class="btn btn-sm btn-usar-cupom">Usar</a>
+                                </li>
+                                {% empty %}
+                                <li class="text-center py-2 text-muted fs-7">Nenhum cupom disponível</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{% url 'ecommerce:create_campanha' %}">
-                                Minhas campanhas
-                            </a>
-                        </li>
-
+                        <li><a class="dropdown-item py-2" href="{% url 'ecommerce:minhas_campanhas' %}">Minhas
+                                campanhas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{% url 'authentication:logout' %}">
-                                Sair
-                            </a>
-                        </li>
-
+                        <li><a class="dropdown-item py-2 text-danger fw-semibold"
+                                href="{% url 'authentication:logout' %}">Sair</a></li>
                     </ul>
                 </div>
-                <style>
-                    .list-unstyled {
-                        padding-left: 0;
-                        list-style: none;
-                    }
-
-
-                    .border-bottom-subtil {
-                        border-bottom: 1px solid #f1f3f5;
-                        padding-bottom: 6px;
-                    }
-
-                    .border-bottom-subtil:last-child {
-                        border-bottom: none;
-
-                    }
-
-
-                    .btn-usar-cupom {
-                        background-color: #ffc107;
-                        color: #000;
-                        font-size: 11px !important;
-                        font-weight: bold;
-                        padding: 2px 8px;
-                        border-radius: 4px;
-                        border: none;
-                        transition: background 0.2s ease;
-                    }
-
-                    .btn-usar-cupom:hover {
-                        background-color: #e0a800;
-                        color: #000;
-                    }
-
-                    /* Tamanho de fonte auxiliar */
-                    .fs-7 {
-                        font-size: 13px;
-                    }
-                </style>
-
             </div>
-
             {% else %}
-
-            <a class="btn btn-outline-warning" href="{% url 'authentication:login' %}">
+            <a class="btn btn-sm btn-outline-warning fw-bold px-3" href="{% url 'authentication:login' %}">
                 Login
             </a>
-
             {% endif %}
 
         </div>
 
     </div>
-
-
-    </div>
-
-    </div>
 </header>
+
+<style>
+    /* Remove a seta padrão do Bootstrap ao lado da foto do perfil */
+    .hide-caret::after {
+        display: none !important;
+    }
+
+    .list-unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .border-bottom-subtil {
+        border-bottom: 1px solid #f1f3f5;
+        padding-bottom: 6px;
+    }
+
+    .border-bottom-subtil:last-child {
+        border-bottom: none;
+    }
+
+    .btn-usar-cupom {
+        background-color: #ffc107;
+        color: #000;
+        font-size: 11px !important;
+        font-weight: bold;
+        padding: 2px 8px;
+        border-radius: 4px;
+        border: none;
+        transition: background 0.2s ease;
+    }
+
+    .btn-usar-cupom:hover {
+        background-color: #e0a800;
+        color: #000;
+    }
+
+    .fs-7 {
+        font-size: 14px;
+    }
+
+    .mobile-nav-toggle {
+        cursor: pointer;
+        margin-left: 10px;
+    }
+</style>

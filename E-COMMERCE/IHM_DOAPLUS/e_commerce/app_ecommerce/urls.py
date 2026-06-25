@@ -18,7 +18,7 @@ urlpatterns = [
     path('create_company/', views.create_company, name='create_company'),
     path('dash/list_companies/', views.list_companies, name='list_companies'),
     path('companiespage/', views.companies, name='companies'),
-    path('minhas-campanhas/', views.minhas_campanhas, name='minhas_campanhas'),
+    path('minhas_campanhas/', views.minhas_campanhas, name='minhas_campanhas'),
 
     path('empresa/<str:id>/', views.company_page, name='company_page'),
     path('causa/<str:title>', views.causa_dashboard, name='causa_dashboard'),
